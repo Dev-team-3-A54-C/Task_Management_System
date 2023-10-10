@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Contracts
 {
-    public interface IStory : ITask, IHasPriority, HasAssignee
+    public interface IStory : ITask, IHasPriority, IHasAssignee
     {
         StorySize Size { get; }
         StoryStatus Status { get; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Contracts
 {
-    internal interface IBug : ITask, IHasPriority, HasAssignee
+    internal interface IBug : ITask, IHasPriority, IHasAssignee
     {
         IList<string> Steps { get; }
         Severity Severity { get; }

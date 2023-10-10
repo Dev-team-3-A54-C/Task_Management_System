@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Contracts
 {
-    public interface IHasPriority
+    public interface IHasAssignee
     {
-        int Priority { get; }
+        Member Assignee { get; }
     }
 }
