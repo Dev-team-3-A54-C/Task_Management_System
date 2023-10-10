@@ -13,5 +13,8 @@ namespace TaskManagementSystem.Models.Contracts
         string Title { get;}
 
         string Description { get;}
+
+        IList<Comment> Comments { get; }
+        IList<EventLog> History { get; }
     }
 }

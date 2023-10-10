@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Contracts
 {
-    internal interface IBug : ITask, IHasPriority
+    internal interface IBug : ITask, IHasPriority, HasAssignee
     {
         IList<string> Steps { get; }
         Severity Severity { get; }
         BugStatus Status { get; }
-        Member Assignee { get; }
-        IList<string> Comments { get; }
-        IList<string> History { get; }
     }
 }
