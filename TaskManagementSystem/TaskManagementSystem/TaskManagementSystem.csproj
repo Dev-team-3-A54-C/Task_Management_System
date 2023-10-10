@@ -7,13 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\Contracts\" />
-    <Folder Include="Commands\Enums\" />
-    <Folder Include="Core\Contracts\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Models\Contracts\" />
-    <Folder Include="ValidationHelpers\" />
-  </ItemGroup>
-
 </Project>
