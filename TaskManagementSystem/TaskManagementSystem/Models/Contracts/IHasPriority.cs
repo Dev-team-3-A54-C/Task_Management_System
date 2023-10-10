@@ -8,6 +8,6 @@ namespace TaskManagementSystem.Models.Contracts
 {
     public interface IHasPriority
     {
-        int Priority { get; }
+        Priority Priority { get; }
     }
 }

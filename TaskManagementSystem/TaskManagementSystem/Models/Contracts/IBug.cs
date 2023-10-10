@@ -8,7 +8,7 @@ namespace TaskManagementSystem.Models.Contracts
 {
     internal interface IBug : ITask, IHasPriority, IHasAssignee
     {
-        IList<string> Steps { get; }
+        IList<string> StepsToReproduce { get; }
         Severity Severity { get; }
         BugStatus Status { get; }
     }

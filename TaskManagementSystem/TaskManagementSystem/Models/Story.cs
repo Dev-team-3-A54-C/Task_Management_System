@@ -7,22 +7,19 @@ using TaskManagementSystem.Models.Contracts;
 
 namespace TaskManagementSystem.Models
 {
-    public class Bug : Task, IBug
+    public class Story : Task, IStory
     {
-        
-        public Bug(int id, string title, string description)
+        public Story(int id, string title, string description, )
             : base(id, title, description)
         {
         }
 
-        public IList<string> StepsToReproduce => throw new NotImplementedException();
+        public StorySize Size { get; private set; }
+
+        public StoryStatus Status { get; private set; }
 
         public Priority Priority => throw new NotImplementedException();
 
         public Member Assignee => throw new NotImplementedException();
-
-        Severity IBug.Severity => throw new NotImplementedException();
-
-        BugStatus IBug.Status => throw new NotImplementedException();
     }
 }

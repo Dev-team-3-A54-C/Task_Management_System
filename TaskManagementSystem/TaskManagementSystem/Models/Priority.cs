@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models
 {
-    internal enum Priority
+    public enum Priority
     {
         High,
         Medium,
