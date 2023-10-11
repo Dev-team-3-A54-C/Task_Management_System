@@ -8,6 +8,6 @@ namespace TaskManagementSystem.Models.Contracts
 {
     public interface IHasTasks
     {
-        IList<Task> Tasks { get; }
+        IList<ITask> Tasks { get; }
     }
 }

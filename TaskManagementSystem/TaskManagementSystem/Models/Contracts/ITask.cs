@@ -14,7 +14,7 @@ namespace TaskManagementSystem.Models.Contracts
 
         string Description { get;}
 
-        IList<Comment> Comments { get; }
-        IList<EventLog> History { get; }
+        IList<IComment> Comments { get; }
+        IList<IEventLog> History { get; }
     }
 }
