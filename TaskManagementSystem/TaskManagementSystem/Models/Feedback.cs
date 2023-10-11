@@ -20,5 +20,9 @@ namespace TaskManagementSystem.Models
 
         // Todo
         public FeedbackStatusType status => throw new NotImplementedException();
+
+        int IFeedback.Rating => throw new NotImplementedException();
+
+        FeedbackStatusType IFeedback.status => throw new NotImplementedException();
     }
 }

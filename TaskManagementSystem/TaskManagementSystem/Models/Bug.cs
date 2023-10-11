@@ -25,5 +25,11 @@ namespace TaskManagementSystem.Models
         SeverityType IBug.Severity => throw new NotImplementedException();
 
         BugStatusType IBug.Status => throw new NotImplementedException();
+
+        IList<string> IBug.StepsToReproduce => throw new NotImplementedException();
+
+        Priority IHasPriority.Priority => throw new NotImplementedException();
+
+        Member IHasAssignee.Assignee => throw new NotImplementedException();
     }
 }

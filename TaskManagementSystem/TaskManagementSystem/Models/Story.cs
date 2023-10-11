@@ -10,7 +10,7 @@ namespace TaskManagementSystem.Models
 {
     public class Story : Task, IStory
     {
-        public Story(int id, string title, string description, )
+        public Story(int id, string title, string description)
             : base(id, title, description)
         {
         }
@@ -22,5 +22,13 @@ namespace TaskManagementSystem.Models
         public Priority Priority => throw new NotImplementedException();
 
         public Member Assignee => throw new NotImplementedException();
+
+        StorySizeType IStory.Size => throw new NotImplementedException();
+
+        StoryStatusType IStory.Status => throw new NotImplementedException();
+
+        Priority IHasPriority.Priority => throw new NotImplementedException();
+
+        Member IHasAssignee.Assignee => throw new NotImplementedException();
     }
 }
