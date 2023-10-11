@@ -63,5 +63,9 @@ namespace TaskManagementSystem.Models
 
         // Todo
         public IList<IEventLog> History => throw new NotImplementedException();
+
+        public abstract void AdvanceStatus();
+
+        public abstract void ReverseStatus();
     }
 }

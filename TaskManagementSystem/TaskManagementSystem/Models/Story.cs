@@ -10,25 +10,115 @@ namespace TaskManagementSystem.Models
 {
     public class Story : Task, IStory
     {
-        public Story(int id, string title, string description)
+        public Story(int id, string title, string description, SizeType size)
             : base(id, title, description)
         {
+            Size = size;
+            Status = StoryStatusType.NotDone;
         }
 
-        public StorySizeType Size { get; private set; }
+        public SizeType Size { get; private set; }
 
         public StoryStatusType Status { get; private set; }
 
-        public Priority Priority => throw new NotImplementedException();
+        public PriorityType Priority { get; private set; }
 
         public Member Assignee => throw new NotImplementedException();
 
-        StorySizeType IStory.Size => throw new NotImplementedException();
+        public override void AdvanceStatus()
+        {
+            if (Status != StoryStatusType.Done)
+            {
+                var prevStatus = Status;
+                Status++;
+                // Todo
+                //this.AddEventLog($"Story's status changed from {prevStatus} to {this.Status}");
+            }
+            else
+            {
+                // Todo
+                //this.AddEventLog("Story's status already set to Done");
+            }
+        }
 
-        StoryStatusType IStory.Status => throw new NotImplementedException();
+        public override void ReverseStatus()
+        {
+            if (Status != StoryStatusType.NotDone)
+            {
+                var prevStatus = Status;
+                Status--;
+                // Todo
+                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
+            }
+            else
+            {
+                // Todo
+                //this.AddEventLog("Story's status already set to NotDone");
+            }
+        }
 
-        Priority IHasPriority.Priority => throw new NotImplementedException();
+        public void IncreasePriority()
+        {
+            if (Priority != PriorityType.High)
+            {
+                var prev = Priority;
+                Priority++;
+                // Todo
+                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
+            }
+            else
+            {
+                // Todo
+                //this.AddEventLog("Task status already Verified");
+            }
+        }
 
-        Member IHasAssignee.Assignee => throw new NotImplementedException();
+        public void DecreasePriority()
+        {
+            if (Priority != PriorityType.Low)
+            {
+                var prev = Priority;
+                Priority--;
+                // Todo
+                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
+            }
+            else
+            {
+                // Todo
+                //this.AddEventLog("Task status already Verified");
+            }
+        }
+
+        public void IncreaseSize()
+        {
+            if (Size != SizeType.Large)
+            {
+                var prev = Size;
+                Size++;
+                // Todo
+                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
+            }
+            else
+            {
+                // Todo
+                //this.AddEventLog("Task status already Verified");
+            }
+        }
+
+        public void DecreaseSize()
+        {
+            if (Size != SizeType.Small)
+            {
+                var prev = Size;
+                Size--;
+                // Todo
+                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
+            }
+            else
+            {
+                // Todo
+                //this.AddEventLog("Task status already Verified");
+            }
+        }
     }
 }

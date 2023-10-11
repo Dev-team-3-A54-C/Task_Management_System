@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Enums
 {
-    public enum StorySizeType
+    public enum PriorityType
     {
-        Large,
+        Low,
         Medium,
-        Small
+        High 
     }
 }

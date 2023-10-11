@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Models
+namespace TaskManagementSystem.Models.Enums
 {
-    public enum Priority
+    public enum SizeType
     {
-        High,
+        Small,
         Medium,
-        Low
+        Large,        
     }
 }

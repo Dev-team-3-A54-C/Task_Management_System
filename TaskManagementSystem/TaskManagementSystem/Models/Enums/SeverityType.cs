@@ -8,8 +8,8 @@ namespace TaskManagementSystem.Models.Enums
 {
     public enum SeverityType
     {
-        Critical,
+        Minor,
         Major,
-        Minor
+        Critical
     }
 }
