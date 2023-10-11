@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Enums
 {
-    public enum StoryStatus
+    public enum SeverityType
     {
-        NotDone,
-        InProgress,
-        Done
+        Critical,
+        Major,
+        Minor
     }
 }

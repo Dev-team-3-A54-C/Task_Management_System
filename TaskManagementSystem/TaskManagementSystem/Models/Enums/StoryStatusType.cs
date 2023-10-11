@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Enums
 {
-    public enum FeedbackStatus
+    public enum StoryStatusType
     {
-        New,
-        Unscheduled,
-        Scheduled,
+        NotDone,
+        InProgress,
         Done
     }
 }

@@ -10,6 +10,6 @@ namespace TaskManagementSystem.Models.Contracts
     public interface IFeedback : ITask
     {
         int Rating { get;}
-        FeedbackStatus status { get;}
+        FeedbackStatusType status { get;}
     }
 }

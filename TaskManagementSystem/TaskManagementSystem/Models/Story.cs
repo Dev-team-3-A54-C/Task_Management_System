@@ -15,9 +15,9 @@ namespace TaskManagementSystem.Models
         {
         }
 
-        public StorySize Size { get; private set; }
+        public StorySizeType Size { get; private set; }
 
-        public StoryStatus Status { get; private set; }
+        public StoryStatusType Status { get; private set; }
 
         public Priority Priority => throw new NotImplementedException();
 

@@ -22,8 +22,8 @@ namespace TaskManagementSystem.Models
 
         public Member Assignee => throw new NotImplementedException();
 
-        Severity IBug.Severity => throw new NotImplementedException();
+        SeverityType IBug.Severity => throw new NotImplementedException();
 
-        BugStatus IBug.Status => throw new NotImplementedException();
+        BugStatusType IBug.Status => throw new NotImplementedException();
     }
 }

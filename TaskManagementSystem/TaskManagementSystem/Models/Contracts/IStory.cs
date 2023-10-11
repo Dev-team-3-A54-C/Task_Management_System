@@ -9,7 +9,7 @@ namespace TaskManagementSystem.Models.Contracts
 {
     public interface IStory : ITask, IHasPriority, IHasAssignee
     {
-        StorySize Size { get; }
-        StoryStatus Status { get; }
+        StorySizeType Size { get; }
+        StoryStatusType Status { get; }
     }
 }

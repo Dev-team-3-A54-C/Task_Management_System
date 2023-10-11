@@ -19,6 +19,6 @@ namespace TaskManagementSystem.Models
         public int Rating { get; private set; }
 
         // Todo
-        public FeedbackStatus status => throw new NotImplementedException();
+        public FeedbackStatusType status => throw new NotImplementedException();
     }
 }

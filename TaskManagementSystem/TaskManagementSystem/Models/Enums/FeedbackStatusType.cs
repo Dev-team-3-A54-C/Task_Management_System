@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Enums
 {
-    public enum StorySize
+    public enum FeedbackStatusType
     {
-        Large,
-        Medium,
-        Small
+        New,
+        Unscheduled,
+        Scheduled,
+        Done
     }
 }

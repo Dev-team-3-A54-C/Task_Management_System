@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Enums
 {
-    public enum Severity
+    public enum StorySizeType
     {
-        Critical,
-        Major,
-        Minor
+        Large,
+        Medium,
+        Small
     }
 }
