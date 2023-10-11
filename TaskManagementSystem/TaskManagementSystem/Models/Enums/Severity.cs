@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Models
+namespace TaskManagementSystem.Models.Enums
 {
     internal enum Severity
     {
