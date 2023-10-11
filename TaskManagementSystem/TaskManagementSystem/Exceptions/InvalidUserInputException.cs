@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Exceptions
 {
-    public class InvalidUserInput : ApplicationException
+    public class InvalidUserInputException : ApplicationException
     {
-        public InvalidUserInput(string message)
+        public InvalidUserInputException(string message)
         : base(message){ }
     }
 }
