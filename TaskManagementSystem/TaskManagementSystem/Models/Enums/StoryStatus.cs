@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Models
+namespace TaskManagementSystem.Models.Enums
 {
-    public enum StorySize
+    public enum StoryStatus
     {
-        Large,
-        Medium,
-        Small
+        NotDone,
+        InProgress,
+        Done
     }
 }

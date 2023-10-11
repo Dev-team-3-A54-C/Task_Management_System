@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Models
+namespace TaskManagementSystem.Models.Enums
 {
-    public enum StoryStatus
+    internal enum Severity
     {
-        NotDone,
-        InProgress,
-        Done
+        Critical,
+        Major,
+        Minor
     }
 }

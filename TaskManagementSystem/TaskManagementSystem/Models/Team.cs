@@ -21,9 +21,12 @@ namespace TaskManagementSystem.Models
         }
 
         // Todo
-        public IList<Member> Member => throw new NotImplementedException();
+        // name must be unique method
 
         // Todo
-        public IList<Board> Boards => throw new NotImplementedException();
+        public IList<IMember> Member => throw new NotImplementedException();
+
+        // Todo
+        public IList<IBoard> Boards => throw new NotImplementedException();
     }
 }

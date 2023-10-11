@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Models.Contracts;
+using TaskManagementSystem.Models.Enums;
 
 namespace TaskManagementSystem.Models
 {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Models.Contracts;
+using TaskManagementSystem.Models.Enums;
 using TaskManagementSystem.ValidationHelpers;
 
 namespace TaskManagementSystem.Models
@@ -58,9 +59,9 @@ namespace TaskManagementSystem.Models
         }
 
         // Todo
-        public IList<Comment> Comments => throw new NotImplementedException();
+        public IList<IComment> Comments => throw new NotImplementedException();
 
         // Todo
-        public IList<EventLog> History => throw new NotImplementedException();
+        public IList<IEventLog> History => throw new NotImplementedException();
     }
 }

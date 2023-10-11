@@ -31,7 +31,11 @@ namespace TaskManagementSystem.Models
                 this.name = value;
             }
         }
+
         // Todo
-        public IList<Task> Tasks => throw new NotImplementedException();
+        // name must be unique method
+
+        // Todo
+        public IList<ITask> Tasks => throw new NotImplementedException();
     }
 }
