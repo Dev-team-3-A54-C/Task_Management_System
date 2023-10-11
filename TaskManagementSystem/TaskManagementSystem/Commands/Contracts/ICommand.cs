@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands.Contracts
 {
-    internal interface ICommand
+    public interface ICommand
     {
+        string Execute();
     }
 }

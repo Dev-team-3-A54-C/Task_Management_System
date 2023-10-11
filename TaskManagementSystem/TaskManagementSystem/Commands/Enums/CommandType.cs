@@ -6,7 +6,37 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands.Enums
 {
-    internal class CommandType
+    public enum CommandType
     {
+        CreateNewPersonCommand,
+        ShowAllPeopleCommand,
+        ShowPersonActivityCommand,
+        CreateNewTeamCommand,
+        ShowAllTeamsCommand,
+        ShowTeamActivityCommand,
+        AddPersonToTeamCommand,
+        ShowAllTeamMembersCommand,
+        CreateNewBoardItemCommand,
+        ShowAllTeamBoardsCommand,
+        ShowBoardActivityCommand,
+        CreateNewBugInBoardCommand,
+        CreateNewStoryInBoardCommand,
+        CreateNewFeedbackInBoardCommand,
+        ChangePriorityOfBugCommand,
+        ChangeSeverityOfBugCommand,
+        ChangeStatusOfBugCommand,
+        ChangePriorityOfStoryCommand,
+        ChangeStatusOfStoryCommand,
+        ChangeSizeOfStoryCommand,
+        ChangeRatingOfFeedbackCommand,
+        ChangeStatusOfFeedbackCommand,
+        AssignPersonToTaskCommand,
+        UnassignPersonFromTaskCommand,
+        AddCommentToTaskCommand,
+        ListAllTasksCommand,
+        ListAllBugsCommand,
+        ListAllStoriesCommand,
+        ListAllFeedbacksCommand,
+        ListAllTasksWithAssigneeCommand
     }
 }
