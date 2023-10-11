@@ -7,7 +7,7 @@ using TaskManagementSystem.Models.Enums;
 
 namespace TaskManagementSystem.Models.Contracts
 {
-    internal interface IBug : ITask, IHasPriority, IHasAssignee
+    public interface IBug : ITask, IHasPriority, IHasAssignee
     {
         IList<string> StepsToReproduce { get; }
         Severity Severity { get; }

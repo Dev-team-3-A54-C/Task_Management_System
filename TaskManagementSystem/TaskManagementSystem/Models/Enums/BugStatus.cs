@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Enums
 {
-    internal enum BugStatus
+    public enum BugStatus
     {
         Active,
         Fixed
