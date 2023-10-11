@@ -32,6 +32,7 @@ namespace TaskManagementSystem.Commands.Enums
         ChangeStatusOfFeedbackCommand,
         AssignPersonToTaskCommand,
         UnassignPersonFromTaskCommand,
+        AddCommentToTaskCommand,
         ListAllTasksCommand,
         ListAllBugsCommand,
         ListAllStoriesCommand,
