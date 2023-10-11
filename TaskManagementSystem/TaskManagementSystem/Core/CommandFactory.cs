@@ -30,8 +30,8 @@ namespace TaskManagementSystem.Core
         private CommandType ParseCommandType(string commandLine)
         {
             string commandName = commandLine.Split(SplitCommandSymbol)[0];
-            //Enum.TryParse(commandName, true, out CommandType result);
-            //return result;
+            Enum.TryParse(commandName, true, out CommandType result);
+            return result;
         }
 
         private List<string> ExtractCommandParameters(string commandLine)
