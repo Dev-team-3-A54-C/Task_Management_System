@@ -44,7 +44,7 @@ namespace TaskManagementSystem.Models
                 string exceptionMessage = $"Cannot advance the status of the bug \"{Title}\" more than \"{Status}\"";
 
                 base.AddEventToLog(exceptionMessage);
-                throw new InvalidUserInput(exceptionMessage);
+                throw new InvalidUserInputException(exceptionMessage);
             }
         }
 
@@ -61,7 +61,7 @@ namespace TaskManagementSystem.Models
                 string exceptionMessage = $"Cannot reverse the status of the bug \"{Title}\" more than \"{Status}\"";
 
                 base.AddEventToLog(exceptionMessage);
-                throw new InvalidUserInput(exceptionMessage);
+                throw new InvalidUserInputException(exceptionMessage);
             }
         }
 
@@ -78,7 +78,7 @@ namespace TaskManagementSystem.Models
                 string exceptionMessage = $"The priority of the bug \"{Title}\" is already \"{priority}\"";
 
                 base.AddEventToLog(exceptionMessage);
-                throw new InvalidUserInput(exceptionMessage);
+                throw new InvalidUserInputException(exceptionMessage);
             }
         }
 
@@ -95,7 +95,7 @@ namespace TaskManagementSystem.Models
                 string exceptionMessage = $"The severity of the bug \"{Title}\" is already \"{severity}\"";
 
                 base.AddEventToLog(exceptionMessage);
-                throw new InvalidUserInput(exceptionMessage);
+                throw new InvalidUserInputException(exceptionMessage);
             }
         }
 

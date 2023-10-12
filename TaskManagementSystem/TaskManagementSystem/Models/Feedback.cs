@@ -36,7 +36,7 @@ namespace TaskManagementSystem.Models
                 string exceptionMessage = $"Cannot advance the status of the feedback \"{Title}\" more than \"{Status}\"";
 
                 base.AddEventToLog(exceptionMessage);
-                throw new InvalidUserInput(exceptionMessage);
+                throw new InvalidUserInputException(exceptionMessage);
             }
         }
 
@@ -53,7 +53,7 @@ namespace TaskManagementSystem.Models
                 string exceptionMessage = $"Cannot reverse the status of the feedback \"{Title}\" more than \"{Status}\"";
 
                 base.AddEventToLog(exceptionMessage);
-                throw new InvalidUserInput(exceptionMessage);
+                throw new InvalidUserInputException(exceptionMessage);
             }
         }
 

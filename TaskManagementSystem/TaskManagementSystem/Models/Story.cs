@@ -40,7 +40,7 @@ namespace TaskManagementSystem.Models
                 string exceptionMessage = $"Cannot advance the status of the story \"{Title}\" more than \"{Status}\"";
 
                 base.AddEventToLog(exceptionMessage);
-                throw new InvalidUserInput(exceptionMessage);
+                throw new InvalidUserInputException(exceptionMessage);
             }
         }
 
@@ -57,7 +57,7 @@ namespace TaskManagementSystem.Models
                 string exceptionMessage = $"Cannot reverse the status of the story \"{Title}\" more than \"{Status}\"";
 
                 base.AddEventToLog(exceptionMessage);
-                throw new InvalidUserInput(exceptionMessage);
+                throw new InvalidUserInputException(exceptionMessage);
             }
         }
 
@@ -74,7 +74,7 @@ namespace TaskManagementSystem.Models
                 string exceptionMessage = $"The priority of the story \"{Title}\" is already \"{priority}\"";
 
                 base.AddEventToLog(exceptionMessage);
-                throw new InvalidUserInput(exceptionMessage);
+                throw new InvalidUserInputException(exceptionMessage);
             }
         }
 
