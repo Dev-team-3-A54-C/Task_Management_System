@@ -25,7 +25,7 @@ namespace TaskManagementSystem.Commands.Creating
 
             string teamName = this.CommandParameters[0];
 
-            var person = this.Repository.CreateTeam(teamName);
+            var team = this.Repository.CreateTeam(teamName);
 
             return $"Team with the name {teamName} was created!";
         }
