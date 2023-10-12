@@ -12,7 +12,6 @@ namespace TaskManagementSystem.Models.Contracts
         IList<string> StepsToReproduce { get; }
         SeverityType Severity { get; }
         BugStatusType Status { get; }
-        void IncreaseSeverity();
-        void LowerSeverity();
+        void SetSeverity(SeverityType severity);
     }
 }

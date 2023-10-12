@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Enums
 {
-    public interface IEventLog
+    public interface IEvent
     {
+        string Description { get; }
+        DateTime Time { get; }
     }
 }

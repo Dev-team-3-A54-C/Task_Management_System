@@ -11,7 +11,6 @@ namespace TaskManagementSystem.Models.Contracts
     {
         SizeType Size { get; }
         StoryStatusType Status { get; }
-        void IncreaseSize();
-        void DecreaseSize();
+        void SetSize(SizeType size);
     }
 }

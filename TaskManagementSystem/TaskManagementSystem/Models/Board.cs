@@ -5,37 +5,56 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Models.Contracts;
+using TaskManagementSystem.Models.Enums;
 
 namespace TaskManagementSystem.Models
 {
     public class Board : HasName, IBoard
     {
-        private string name;
-
         private const int NameMinValue = 5;
         private const int NameMaxValue = 10;
         private const string NameExceptionMessage = "Name of the board must be between {0} and {1} symbols";
 
-        public Board(string name, IList<Member> members, IList<Board> boards)
-            : base(NameMinValue, NameMaxValue, NameExceptionMessage)
+        private IList<ITask> tasks = new List<ITask>();
+        private IList<IEvent> eventLog = new List<IEvent>();
+
+        public Board(string name)
+            : base(name, NameMinValue, NameMaxValue, NameExceptionMessage)
         {
-            Name = name;
+            AddEventToLog($"Board with name \"{base.Name}\" created");
         }
 
-        public string Name
+        public IList<ITask> Tasks
         {
-            get => this.name;
-            private set
-            {
-                ValidationHelpers.ValidationHelper.ValidateStringLength(value, NameMinValue, NameMaxValue, NameExceptionMessage);
-                this.name = value;
-            }
+            get => new List<ITask>(tasks);
         }
 
-        // Todo
-        // name must be unique method
+        public IList<IEvent> EventLog
+        {
+            get => new List<IEvent>(eventLog);
+        }
 
-        // Todo
-        public IList<ITask> Tasks => throw new NotImplementedException();
+        public void AddTask(ITask task)
+        {
+            tasks.Add(task);
+            AddEventToLog($"Task \"{task.Title}\" added to board \"{base.Name}\"");
+        }
+
+        public void RemoveTask(ITask task)
+        {
+            tasks.Remove(task);
+            AddEventToLog($"Task \"{task.Title}\" removed from board \"{base.Name}\"");
+        }
+
+        public void AddEventToLog(string description)
+        {
+            eventLog.Add(new Event(description));
+        }
+
+        public override string ToString()
+        {
+            return "todo";
+            // Todo
+        }
     }
 }

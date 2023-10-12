@@ -16,7 +16,7 @@ namespace TaskManagementSystem.Models.Contracts
         string Description { get;}
 
         IList<IComment> Comments { get; }
-        IList<IEventLog> History { get; }
+        IList<IEvent> EventLog { get; }
         void AdvanceStatus();
         void ReverseStatus();
     }

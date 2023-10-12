@@ -9,5 +9,7 @@ namespace TaskManagementSystem.Models.Contracts
     public interface IHasTasks
     {
         IList<ITask> Tasks { get; }
+        void AddTask(ITask task);
+        void RemoveTask(ITask task);
     }
 }

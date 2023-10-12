@@ -23,6 +23,9 @@ namespace TaskManagementSystem.Models
         private const int DescriptionMaxValue = 500;
         private const string DescriptionExceptionMessage = "Description must be between {0} and {1} symbols";
 
+        private IList<IComment> comments = new List<IComment>();
+        private IList<IEvent> eventLog = new List<IEvent>();
+
         public Task(int id, string title, string description)
         {
             Id = id;
@@ -34,7 +37,7 @@ namespace TaskManagementSystem.Models
             get => this.id;
             private set
             {
-                this.id = value; // or it could be      this.id++;    ?
+                this.id = value;
             }
         }
 
@@ -58,14 +61,34 @@ namespace TaskManagementSystem.Models
             }
         }
 
-        // Todo
-        public IList<IComment> Comments => throw new NotImplementedException();
+        public IList<IComment> Comments
+        {
+            get => new List<IComment>(comments);
+        }
 
-        // Todo
-        public IList<IEventLog> History => throw new NotImplementedException();
+        public IList<IEvent> EventLog
+        {
+            get => new List<IEvent>(eventLog);
+        }
 
         public abstract void AdvanceStatus();
 
         public abstract void ReverseStatus();
+
+        public void AddComment(IComment comment)
+        {
+            comments.Add(comment);
+        }
+
+        public void AddEventToLog(string description)
+        {
+            eventLog.Add(new Event(description));
+        }
+
+        public override string ToString()
+        {
+            return "todo";
+            // Todo     title, priority, status
+        }
     }
 }

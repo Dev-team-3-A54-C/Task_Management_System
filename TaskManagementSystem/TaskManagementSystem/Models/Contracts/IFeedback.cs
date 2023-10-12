@@ -11,6 +11,6 @@ namespace TaskManagementSystem.Models.Contracts
     {
         int Rating { get;}
         FeedbackStatusType Status { get;}
-        void SetRating(int newRating);
+        void SetRating(int rating);
     }
 }

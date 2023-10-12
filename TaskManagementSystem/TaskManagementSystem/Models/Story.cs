@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManagementSystem.Exceptions;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models.Enums;
 
@@ -10,9 +11,10 @@ namespace TaskManagementSystem.Models
 {
     public class Story : Task, IStory
     {
-        public Story(int id, string title, string description, SizeType size)
+        public Story(int id, string title, string description, PriorityType priority, SizeType size)
             : base(id, title, description)
         {
+            Priority = priority;
             Size = size;
             Status = StoryStatusType.NotDone;
         }
@@ -23,21 +25,22 @@ namespace TaskManagementSystem.Models
 
         public PriorityType Priority { get; private set; }
 
-        public Member Assignee => throw new NotImplementedException();
+        public Member Assignee { get; private set; }
 
         public override void AdvanceStatus()
         {
             if (Status != StoryStatusType.Done)
             {
-                var prevStatus = Status;
+                StoryStatusType oldStatus = Status;
                 Status++;
-                // Todo
-                //this.AddEventLog($"Story's status changed from {prevStatus} to {this.Status}");
+                base.AddEventToLog($"The status of the story \"{Title}\" advanced from \"{oldStatus}\" to \"{Status}\"");
             }
             else
             {
-                // Todo
-                //this.AddEventLog("Story's status already set to Done");
+                string exceptionMessage = $"Cannot advance the status of the story \"{Title}\" more than \"{Status}\"";
+
+                base.AddEventToLog(exceptionMessage);
+                throw new InvalidUserInput(exceptionMessage);
             }
         }
 
@@ -45,80 +48,53 @@ namespace TaskManagementSystem.Models
         {
             if (Status != StoryStatusType.NotDone)
             {
-                var prevStatus = Status;
+                StoryStatusType oldStatus = Status;
                 Status--;
-                // Todo
-                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
+                base.AddEventToLog($"The status of the story \"{Title}\" reversed from \"{oldStatus}\" to \"{Status}\"");
             }
             else
             {
-                // Todo
-                //this.AddEventLog("Story's status already set to NotDone");
+                string exceptionMessage = $"Cannot reverse the status of the story \"{Title}\" more than \"{Status}\"";
+
+                base.AddEventToLog(exceptionMessage);
+                throw new InvalidUserInput(exceptionMessage);
             }
         }
 
-        public void IncreasePriority()
+        public void SetPriority(PriorityType priority)
         {
-            if (Priority != PriorityType.High)
+            if (Priority != priority)
             {
-                var prev = Priority;
-                Priority++;
-                // Todo
-                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
+                PriorityType oldPriority = Priority;
+                Priority = priority;
+                base.AddEventToLog($"The priority of the story \"{Title}\" changed from \"{oldPriority}\" to \"{Priority}\"");
             }
             else
             {
-                // Todo
-                //this.AddEventLog("Task status already Verified");
+                string exceptionMessage = $"The priority of the story \"{Title}\" is already \"{priority}\"";
+
+                base.AddEventToLog(exceptionMessage);
+                throw new InvalidUserInput(exceptionMessage);
             }
         }
 
-        public void DecreasePriority()
+        public void SetSize(SizeType size)
         {
-            if (Priority != PriorityType.Low)
-            {
-                var prev = Priority;
-                Priority--;
-                // Todo
-                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
-            }
-            else
-            {
-                // Todo
-                //this.AddEventLog("Task status already Verified");
-            }
+            SizeType oldSize = Size;
+            Size = size;
+            base.AddEventToLog($"The rating of the feedback \"{Title}\" changed from \"{oldSize}\" to \"{Size}\"");
         }
 
-        public void IncreaseSize()
+        public void AssignMember(Member member)
         {
-            if (Size != SizeType.Large)
-            {
-                var prev = Size;
-                Size++;
-                // Todo
-                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
-            }
-            else
-            {
-                // Todo
-                //this.AddEventLog("Task status already Verified");
-            }
+            Assignee = member;
+            base.AddEventToLog($"\"{member.Name}\" assigned to the the story \"{Title}\"");
         }
 
-        public void DecreaseSize()
+        public override string ToString()
         {
-            if (Size != SizeType.Small)
-            {
-                var prev = Size;
-                Size--;
-                // Todo
-                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
-            }
-            else
-            {
-                // Todo
-                //this.AddEventLog("Task status already Verified");
-            }
+            return "todo";
+            // Todo     title, priority, status
         }
     }
 }

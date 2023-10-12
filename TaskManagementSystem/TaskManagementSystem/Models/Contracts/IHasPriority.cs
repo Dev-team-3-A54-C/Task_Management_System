@@ -10,7 +10,6 @@ namespace TaskManagementSystem.Models.Contracts
     public interface IHasPriority
     {
         PriorityType Priority { get; }
-        void IncreasePriority();
-        void DecreasePriority();
+        void SetPriority(PriorityType priority);
     }
 }

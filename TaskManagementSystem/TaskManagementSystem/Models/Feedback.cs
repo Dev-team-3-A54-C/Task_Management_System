@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManagementSystem.Exceptions;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models.Enums;
 
@@ -26,15 +27,16 @@ namespace TaskManagementSystem.Models
         {
             if (Status != FeedbackStatusType.Done)
             {
-                var prev = Status;
+                FeedbackStatusType oldStatus = Status;
                 Status++;
-                // Todo
-                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
+                base.AddEventToLog($"The status of the feedback \"{Title}\" changed from \"{oldStatus}\" to \"{Status}\"");
             }
             else
             {
-                // Todo
-                // this.AddEventLog("Task status already Verified");
+                string exceptionMessage = $"Cannot advance the status of the feedback \"{Title}\" more than \"{Status}\"";
+
+                base.AddEventToLog(exceptionMessage);
+                throw new InvalidUserInput(exceptionMessage);
             }
         }
 
@@ -42,21 +44,30 @@ namespace TaskManagementSystem.Models
         {
             if (Status != FeedbackStatusType.New)
             {
-                var prev = Status;
+                FeedbackStatusType oldStatus = Status;
                 Status--;
-                // Todo
-                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
+                base.AddEventToLog($"The status of the feedback \"{Title}\" changed from \"{oldStatus}\" to \"{Status}\"");
             }
             else
             {
-                // Todo
-                //this.AddEventLog("Task status already Todo");
+                string exceptionMessage = $"Cannot reverse the status of the feedback \"{Title}\" more than \"{Status}\"";
+
+                base.AddEventToLog(exceptionMessage);
+                throw new InvalidUserInput(exceptionMessage);
             }
         }
 
-        public void SetRating(int newRating)
+        public void SetRating(int rating)
         {
-            Rating = newRating;
+            int oldRating = Rating;
+            Rating = rating;
+            base.AddEventToLog($"The rating of the feedback \"{Title}\" changed from \"{oldRating}\" to \"{Rating}\"");
+        }
+
+        public override string ToString()
+        {
+            return "todo";
+            // Todo title, priority, status
         }
     }
 }

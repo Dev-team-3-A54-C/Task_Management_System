@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using TaskManagementSystem.Exceptions;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models.Enums;
 
@@ -11,37 +7,44 @@ namespace TaskManagementSystem.Models
 {
     public class Bug : Task, IBug
     {
-        
+        private IList<string> reproductionSteps = new List<string>();
+
         public Bug(int id, string title, string description, PriorityType priority, SeverityType severity)
             : base(id, title, description)
         {
             Priority = priority;
+            Severity = severity;
             Status = BugStatusType.Active;
+            base.AddEventToLog($"Bug with \"{Title}\" created");
         }
 
-        public IList<string> StepsToReproduce => throw new NotImplementedException();
+        public IList<string> StepsToReproduce
+        {
+            get => new List<string>(reproductionSteps);
+        }
 
         public PriorityType Priority { get; private set; }
 
-        public Member Assignee => throw new NotImplementedException();
+        public Member Assignee { get; private set; }
 
         public SeverityType Severity { get; private set; }
 
         public BugStatusType Status { get; private set; }
 
-
         public override void AdvanceStatus()
         {
             if (Status != BugStatusType.Fixed)
             {
+                BugStatusType oldStatus = Status;
                 Status = BugStatusType.Fixed;
-                // Todo
-                //this.AddEventLog("The status of item with ID 42 switched from Active to Done.");
+                base.AddEventToLog($"The status of the bug \"{Title}\" advanced from \"{oldStatus}\" to \"{Status}\"");
             }
             else
             {
-                // Todo
-                //this.AddEventLog("Bug status already Fixed");
+                string exceptionMessage = $"Cannot advance the status of the bug \"{Title}\" more than \"{Status}\"";
+
+                base.AddEventToLog(exceptionMessage);
+                throw new InvalidUserInput(exceptionMessage);
             }
         }
 
@@ -49,79 +52,63 @@ namespace TaskManagementSystem.Models
         {
             if (Status != BugStatusType.Active)
             {
+                BugStatusType oldStatus = Status;
                 Status = BugStatusType.Active;
-                // Todo
-                //this.AddEventLog("Bug status set to Active");
+                base.AddEventToLog($"The status of the bug \"{Title}\" reversed from \"{oldStatus}\" to \"{Status}\"");
             }
             else
             {
-                // Todo
-                //this.AddEventLog("Bug status already Active");
+                string exceptionMessage = $"Cannot reverse the status of the bug \"{Title}\" more than \"{Status}\"";
+
+                base.AddEventToLog(exceptionMessage);
+                throw new InvalidUserInput(exceptionMessage);
             }
         }
 
-        public void IncreasePriority()
+        public void SetPriority(PriorityType priority)
         {
-            if (Priority != PriorityType.High)
+            if (Priority != priority)
             {
-                var prev = Priority;
-                Priority++;
-                // Todo
-                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
+                PriorityType oldPriority = Priority;
+                Priority = priority;
+                base.AddEventToLog($"The priority of the bug \"{Title}\" changed from \"{oldPriority}\" to \"{Priority}\"");
             }
             else
             {
-                // Todo
-                //this.AddEventLog("Task status already Verified");
+                string exceptionMessage = $"The priority of the bug \"{Title}\" is already \"{priority}\"";
+
+                base.AddEventToLog(exceptionMessage);
+                throw new InvalidUserInput(exceptionMessage);
             }
         }
 
-        public void DecreasePriority()
+        public void SetSeverity(SeverityType severity)
         {
-            if (Priority != PriorityType.Low)
+            if (Severity != severity)
             {
-                var prev = Priority;
-                Priority--;
-                // Todo
-                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
+                SeverityType oldSeverity = Severity;
+                Severity = severity;
+                base.AddEventToLog($"The severity of the bug \"{Title}\" changed from \"{oldSeverity}\" to \"{Severity}\"");
             }
             else
             {
-                // Todo
-                //this.AddEventLog("Task status already Verified");
+                string exceptionMessage = $"The severity of the bug \"{Title}\" is already \"{severity}\"";
+
+                base.AddEventToLog(exceptionMessage);
+                throw new InvalidUserInput(exceptionMessage);
             }
         }
 
-        public void IncreaseSeverity()
+        public void AssignMember(Member member)
         {
-            if (Severity != SeverityType.Minor)
-            {
-                var prev = Severity;
-                Severity++;
-                // Todo
-                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
-            }
-            else
-            {
-                // Todo
-                //this.AddEventLog("Task status already Verified");
-            }
+            Assignee = member;
+            base.AddEventToLog($"\"{member.Name}\" assigned to the bug \"{Title}\"");
         }
 
-        public void LowerSeverity()
+        public override string ToString()
         {
-            if (Severity != SeverityType.Critical)
-            {
-                var prev = Severity;
-                Severity--;
-                // Todo
-                //this.AddEventLog($"Task changed from {prev} to {this.Status}");
-            }
-            else
-            {
-                // Todo
-                //this.AddEventLog("Task status already Verified");
-            }
+            return "todo";
+            // Todo title, priority, status
         }
     }
 }

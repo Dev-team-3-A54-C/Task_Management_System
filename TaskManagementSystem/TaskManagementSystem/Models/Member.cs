@@ -4,22 +4,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Models.Contracts;
+using TaskManagementSystem.Models.Enums;
 
 namespace TaskManagementSystem.Models
 {
     public class Member : HasName, IMember
     {
-        private string name;
         private const int NameMinValue = 5;
         private const int NameMaxValue = 15;
         private const string NameExceptionMessage = "Name";
 
+        private IList<ITask> tasks = new List<ITask>();
+        private IList<IEvent> eventLog = new List<IEvent>();
+
         public Member(string name)
-            : base(NameMinValue, NameMaxValue, NameExceptionMessage)
+            : base(name, NameMinValue, NameMaxValue, NameExceptionMessage)
         {
-            Name = name;
+            AddEventToLog($"Member with name \"{base.Name}\" created");
         }
-        // Todo
-        public IList<Task> Tasks => throw new NotImplementedException();
+
+        public IList<ITask> Tasks
+        {
+            get => new List<ITask>(tasks);
+        }
+
+        public IList<IEvent> EventLog
+        {
+            get => new List<IEvent>(eventLog);
+        }
+
+        public void AddTask(ITask task)
+        {
+            tasks.Add(task);
+            AddEventToLog($"Task \"{task.Title}\" added to {base.Name}'s list");
+        }
+
+        public void RemoveTask(ITask task)
+        {
+            tasks.Remove(task);
+            AddEventToLog($"Task \"{task.Title}\" remvoed from {base.Name}'s list");
+        }
+
+        public void AddEventToLog(string description)
+        {
+            eventLog.Add(new Event(description));
+        }
+
+        public override string ToString()
+        {
+            return "todo";
+            // Todo
+        }
+
     }
 }

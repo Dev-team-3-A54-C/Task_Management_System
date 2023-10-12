@@ -14,19 +14,37 @@ namespace TaskManagementSystem.Models
         private const int NameMaxValue = 15;
         private const string NameExceptionMessage = "Name of the team must be between {0} and {1} symbols";
 
-        public Team(string name, IList<Member> members, IList<Board> boards)
-            :base(NameMinValue, NameMaxValue, NameExceptionMessage)
+        private IList<IMember> members = new List<IMember>();
+        private IList<IBoard> boards = new List<IBoard>();
+
+        public Team(string name)
+            :base(name, NameMinValue, NameMaxValue, NameExceptionMessage)
         {
-            Name = name;
         }
 
-        // Todo
-        // name must be unique method
+        public IList<IMember> Member
+        {
+            get => new List<IMember>(members);
+        }
 
-        // Todo
-        public IList<IMember> Member => throw new NotImplementedException();
+        public IList<IBoard> Boards
+        {
+            get => new List<IBoard>(boards);
+        }
+        public void AddMember(IMember member)
+        {
+            members.Add(member);
+        }
 
-        // Todo
-        public IList<IBoard> Boards => throw new NotImplementedException();
+        public void AddBoard(IBoard board)
+        {
+            boards.Add(board);
+        }
+
+        public override string ToString()
+        {
+            return "todo";
+            // Todo
+        }
     }
 }
