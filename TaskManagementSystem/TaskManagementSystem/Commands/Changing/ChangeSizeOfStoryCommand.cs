@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands.Changing
 {
-    internal class ChangeSizeOfStoryCommand
+    public class ChangeSizeOfStoryCommand
     {
+        //ToDo
     }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands.Showing
 {
-    internal class ShowTeamActivityCommand
+    public class ShowTeamActivityCommand
     {
+        //ToDo
     }
 }

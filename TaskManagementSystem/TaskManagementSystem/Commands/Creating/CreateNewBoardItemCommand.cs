@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands.Creating
 {
-    internal class CreateNewBoardItemCommand
+    public class CreateNewBoardItemCommand
     {
+        //ToDo
     }
 }

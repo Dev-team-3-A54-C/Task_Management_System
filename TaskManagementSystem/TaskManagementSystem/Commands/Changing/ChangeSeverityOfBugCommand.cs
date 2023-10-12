@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands.Changing
 {
-    internal class ChangeSeverityOfBugCommand
+    public class ChangeSeverityOfBugCommand
     {
+        //ToDo
     }
 }

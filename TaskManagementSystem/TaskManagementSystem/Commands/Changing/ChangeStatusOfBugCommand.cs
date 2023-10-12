@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands.Changing
 {
-    internal class ChangeStatusOfBugCommand
+    public class ChangeStatusOfBugCommand
     {
+        //ToDo
     }
 }

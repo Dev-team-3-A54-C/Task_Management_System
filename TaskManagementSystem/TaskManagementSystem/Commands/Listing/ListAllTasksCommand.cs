@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands.Listing
 {
-    internal class ListAllTasksCommand
+    public class ListAllTasksCommand
     {
+        //ToDo
     }
 }

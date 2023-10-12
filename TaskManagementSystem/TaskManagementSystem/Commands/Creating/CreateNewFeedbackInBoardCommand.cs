@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands.Creating
 {
-    internal class CreateNewFeedbackInBoardCommand
+    public class CreateNewFeedbackInBoardCommand
     {
+        //ToDo
     }
 }

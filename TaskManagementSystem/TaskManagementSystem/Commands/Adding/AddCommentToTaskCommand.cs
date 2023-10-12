@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands.Adding
 {
-    internal class AddCommentToTaskCommand
+    public class AddCommentToTaskCommand
     {
+        //ToDo
     }
 }

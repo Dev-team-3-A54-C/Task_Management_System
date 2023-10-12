@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands
 {
-    internal class UnassignPersonFromTaskCommand
+    public class UnassignPersonFromTaskCommand
     {
     }
 }

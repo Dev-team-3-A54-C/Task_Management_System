@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Commands
 {
-    internal class AssignPersonToTaskCommand
+    public class AssignPersonToTaskCommand
     {
+        //ToDo
     }
 }
