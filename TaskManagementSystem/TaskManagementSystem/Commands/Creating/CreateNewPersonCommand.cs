@@ -19,14 +19,14 @@ namespace TaskManagementSystem.Commands.Creating
         {
             if(this.CommandParameters.Count != ExpectedNumberOfArguments)
             {
-                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}");
+                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}.");
             }
 
             string personName = this.CommandParameters[0];
 
             var person = this.Repository.CreatePerson(personName);
 
-            return $"Person with the name {personName} was created";
+            return $"Person with the name {personName} was created!";
         }
     }
 }
