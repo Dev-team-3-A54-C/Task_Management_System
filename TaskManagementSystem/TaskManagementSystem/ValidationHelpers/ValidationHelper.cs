@@ -13,7 +13,7 @@ namespace TaskManagementSystem.ValidationHelpers
         public static void ValidateStringLength(string value, int minValue, int maxValue, string message)
         {
             if (value.Length < minValue || value.Length > maxValue)
-                throw new InvalidUserInputException(message);
+                throw new InvalidUserInputException(string.Format(message, minValue, maxValue));
         }
 
         public static void ValidateIfIntIsNegative(int value, string message)
