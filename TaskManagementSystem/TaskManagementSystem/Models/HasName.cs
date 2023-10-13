@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManagementSystem.Models.Contracts;
 
 namespace TaskManagementSystem.Models
 {
-    public abstract class HasName
+    public abstract class HasName : IHasName
     {
         private string name;
         private readonly int minValue;
