@@ -9,7 +9,7 @@ namespace TaskManagementSystem.Models
 {
     public abstract class HasName : IHasName
     {
-        private string name;
+        private string name = "";
         private readonly int minValue;
         private readonly int maxValue;
         private readonly string exceptionMessage;
