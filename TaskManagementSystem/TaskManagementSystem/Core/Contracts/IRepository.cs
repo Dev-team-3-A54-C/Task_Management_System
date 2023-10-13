@@ -5,37 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Models;
 using TaskManagementSystem.Models.Contracts;
+using TaskManagementSystem.Models.Enums;
 
 namespace TaskManagementSystem.Core.Contracts
 {
     public interface IRepository
     {
-
-        bool TeamExists(string teamName);
-
-
         ITeam CreateTeam(string name);
-        IComment CreateComment(string content, string author);
-        ITask CreateTask(string title, string description);
-        IMember CreatePerson(string name);
-        IBoard CreateBoard(string name); //?
-
         ITeam GetTeam(string teamName);
-        IMember GetMember(string name);
-        IBoard GetBoard(string name);
 
+        IComment CreateComment(string content, string author);
+
+        IBug CreateBug(string title, string description, PriorityType priority, SeverityType severity, BugStatusType status);
+        IStory CreateStory(string title, string description, SizeType size, StoryStatusType status, PriorityType priority);
+        IFeedback CreateFeedback(string title, string description, int rating, FeedbackStatusType status);
         ITask GetTask(string name);
 
-        
-        
-        void ChangeBugPriority(IBug bug);
-        void ChangeBugSeverity(IBug bug);
-        void ChangeBugStatus(IBug bug);
-        void ChangeStoryPriority(IStory story);
-        void ChangeStoryStatus(IStory story);
+        IMember CreateMember(string name);
+        IMember GetMember(string name);
 
-        void ChangeStorySize(IStory story);
-        void ChangeRating(IFeedback feedback);
-        void ChangeStatus(IFeedback feedback);
+        IBoard CreateBoard(string name);
+        IBoard GetBoard(string name);
+
+
+
     }
 }

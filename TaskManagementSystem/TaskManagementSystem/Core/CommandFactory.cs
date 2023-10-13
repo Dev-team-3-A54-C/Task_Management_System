@@ -4,9 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TaskManagementSystem.Commands;
+using TaskManagementSystem.Commands.Adding;
+using TaskManagementSystem.Commands.Changing;
 using TaskManagementSystem.Commands.Contracts;
+using TaskManagementSystem.Commands.Creating;
 using TaskManagementSystem.Commands.Enums;
+using TaskManagementSystem.Commands.Listing;
+using TaskManagementSystem.Commands.Showing;
 using TaskManagementSystem.Core.Contracts;
+using TaskManagementSystem.Exceptions;
 
 namespace TaskManagementSystem.Core
 {
@@ -23,8 +30,75 @@ namespace TaskManagementSystem.Core
         }
         public ICommand Create(string input)
         {
-            //implement
-            throw new NotImplementedException();
+            CommandType commandType = ParseCommandType(input);
+            List<string> commandParameters = this.ExtractCommandParameters(input);
+
+            switch (commandType)
+            {
+                case CommandType.AddCommentToTaskCommand:
+                    return new AddCommentToTaskCommand();
+                case CommandType.AddPersonToTeamCommand:
+                    return new AddPersonToTeamCommand();
+                case CommandType.ChangePriorityOfBugCommand:
+                    return new ChangePriorityOfBugCommand();
+                case CommandType.ChangePriorityOfStoryCommand:
+                    return new ChangePriorityOfStoryCommand();
+                case CommandType.ChangeRatingOfFeedbackCommand:
+                    return new ChangeRatingOfFeedbackCommand();
+                case CommandType.ChangeSeverityOfBugCommand:
+                    return new ChangeSeverityOfBugCommand();
+                case CommandType.ChangeSizeOfStoryCommand:
+                    return new ChangeSizeOfStoryCommand();
+                case CommandType.ChangeStatusOfBugCommand:
+                    return new ChangeStatusOfBugCommand();
+                case CommandType.ChangeStatusOfStoryCommand:
+                    return new ChangeStatusOfStoryCommand();
+                case CommandType.ChangeStatusOfFeedbackCommand:
+                    return new ChangeStatusOfFeedbackCommand();
+                case CommandType.CreateNewBoardItemCommand:
+                    return new CreateNewBoardItemCommand();
+                case CommandType.CreateNewBugInBoardCommand:
+                    return new CreateNewBugInBoardCommand();
+                case CommandType.CreateNewFeedbackInBoardCommand:
+                    return new CreateNewFeedbackInBoardCommand();
+                case CommandType.CreateNewPersonCommand:
+                    return new CreateNewPersonCommand();
+                case CommandType.CreateNewStoryInBoardCommand:
+                    return new CreateNewStoryInBoardCommand();
+                case CommandType.CreateNewTeamCommand:
+                    return new CreateNewTeamCommand();
+                case CommandType.ListAllBugsCommand:
+                    return new ListAllBugsCommand();
+                case CommandType.ListAllFeedbacksCommand:
+                    return new ListAllFeedbacksCommand();
+                case CommandType.ListAllStoriesCommand:
+                    return new ListAllStoriesCommand();
+                case CommandType.ListAllTasksCommand:
+                    return new ListAllTasksCommand();
+                case CommandType.ListAllTasksWithAssigneeCommand:
+                    return new ListAllTasksWithAssigneeCommand();
+                case CommandType.AssignPersonToTaskCommand:
+                    return new AssignPersonToTaskCommand();
+                case CommandType.UnassignPersonFromTaskCommand:
+                    return new UnassignPersonFromTaskCommand();
+                case CommandType.ShowAllPeopleCommand:
+                    return new ShowAllPeopleCommand();
+                case CommandType.ShowAllTeamBoardsCommand:
+                    return new ShowAllTeamBoardsCommand();
+                case CommandType.ShowAllTeamMembersCommand:
+                    return new ShowAllTeamMembersCommand();
+                case CommandType.ShowAllTeamsCommand:
+                    return new ShowAllTeamsCommand();
+                case CommandType.ShowBoardActivityCommand:
+                    return new ShowBoardActivityCommand();
+                case CommandType.ShowPersonActivityCommand:
+                    return new ShowPersonActivityCommand();
+                case CommandType.ShowTeamActivityCommand:
+                    return new ShowTeamActivityCommand();
+                default:
+                    throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
+            }
+
         }
 
         private CommandType ParseCommandType(string commandLine)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaskManagementSystem.Core.Contracts;
 using TaskManagementSystem.Models;
 using TaskManagementSystem.Models.Contracts;
+using TaskManagementSystem.Models.Enums;
 
 namespace TaskManagementSystem.Core
 {
@@ -44,114 +45,71 @@ namespace TaskManagementSystem.Core
                 return new List<ITask>(tasks);
             }
         }
-        public void AddTeam(Team t)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ChangeRating(IFeedback feedback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ChangeStatus(IFeedback feedback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ChangeStoryPriority(IStory story)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ChangeStorySize(IStory story)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ChangeStoryStatus(IStory story)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IBoard CreateBoard(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IComment CreateComment(string content, string author)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IMember CreateNewPerson(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IMember CreatePerson(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ITask CreateTask(string title, string description)
-        {
-            throw new NotImplementedException();
-        }
-
         public ITeam CreateTeam(string name)
         {
-            throw new NotImplementedException();
+            ITeam team = new Team(name);
+            teams.Add(team);
+            return team;
+        }
+        public ITeam GetTeam(string teamName)
+        {
+            ITeam team = teams.FirstOrDefault(x => x.Name == teamName);
+            return team;
+        }
+        public IComment CreateComment(string content, string author)
+        {
+            IComment comment = new Comment(content, author);
+            return comment;
+        }
+        IBug CreateBug(string title, string description, PriorityType priority, SeverityType severity, BugStatusType status)
+        {
+            int nextId = tasks.Count;
+            IBug bug = new Bug(++nextId, title, description, priority, severity, status);
+            tasks.Add(bug);
+            return bug;
+        }
+        public IStory CreateStory(string title, string description, SizeType size, StoryStatusType status, PriorityType priority)
+        {
+            int nextId = tasks.Count;
+            IStory story = new Story(++nextId, title, description, size, status, priority);
+            tasks.Add(story);
+            return story;
+        }
+        public IFeedback CreateFeedback(string title, string description, int rating, FeedbackStatusType status)
+        {
+            int nextId = tasks.Count;
+            IFeedback feedback = new Feedback(++nextId, title, description, rating, status);
+            tasks.Add(feedback);
+            return feedback;
+        }
+        public ITask GetTask(string name)
+        {
+            ITask task = tasks.FirstOrDefault(x => x.Name == name);
+            return task;
+        }
+        public IMember CreateMember(string name)
+        {
+            IMember member = new Member(name);
+            members.Add(member);
+            return member;
+        }
+        public IMember GetMember(string name)
+        {
+            IMember member = members.FirstOrDefault(x => x.Name == name);
+            return member;
+        }
+        public IBoard CreateBoard(string name)
+        {
+            IBoard board = new Board(name);
+            this.boards.Add(board);
+            return board;
         }
 
         public IBoard GetBoard(string name)
         {
-            throw new NotImplementedException();
+            IBoard board = boards.FirstOrDefault(x => x.Name == name);
+            return board;
         }
 
-        public IMember GetMember(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ITask GetTask(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ITeam GetTeam(string teamName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveTeam(Team t)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string ShowAllTeams()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TeamExists(string teamName)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository.ChangeBugPriority(IBug bug)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository.ChangeBugSeverity(IBug bug)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository.ChangeBugStatus(IBug bug)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
