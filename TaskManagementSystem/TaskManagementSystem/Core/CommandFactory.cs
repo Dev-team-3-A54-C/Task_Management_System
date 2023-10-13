@@ -55,19 +55,19 @@ namespace TaskManagementSystem.Core
                 //    return new ChangeStatusOfStoryCommand();
                 //case CommandType.ChangeStatusOfFeedbackCommand:
                 //    return new ChangeStatusOfFeedbackCommand();
-                case CommandType.CreateNewBoardInTeamCommand:
+                case CommandType.CreateNewBoardInTeam:
                     return new CreateNewBoardInTeamCommand(commandParameters, repository);
-                case CommandType.CreateNewBugInBoardCommand:
+                case CommandType.CreateNewBugInBoard:
                     return new CreateNewBugInBoardCommand(commandParameters, repository);
-                case CommandType.CreateNewFeedbackInBoardCommand:
+                case CommandType.CreateNewFeedbackInBoard:
                     return new CreateNewFeedbackInBoardCommand(commandParameters, repository);
-                case CommandType.CreateNewPersonCommand:
+                case CommandType.CreateNewPerson:
                     return new CreateNewPersonCommand(commandParameters, repository);
-                case CommandType.CreateNewStoryInBoardCommand:
+                case CommandType.CreateNewStoryInBoard:
                     return new CreateNewStoryInBoardCommand(commandParameters, repository);
-                case CommandType.CreateNewTeamCommand:
+                case CommandType.CreateNewTeam:
                     return new CreateNewTeamCommand(commandParameters, repository);
-                case CommandType.ListAllBugsCommand:
+                case CommandType.ListAllBugs:
                     return new ListAllBugsCommand(repository);
                 //case CommandType.ListAllFeedbacksCommand:
                 //    return new ListAllFeedbacksCommand();

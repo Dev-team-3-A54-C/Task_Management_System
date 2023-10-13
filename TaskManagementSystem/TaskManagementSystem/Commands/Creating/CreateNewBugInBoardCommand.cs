@@ -34,7 +34,7 @@ namespace TaskManagementSystem.Commands.Creating
 
             string bugTitle = CommandParameters[0];
             string bugDescription = CommandParameters[1];
-            List<string> stepsToReproduceBug = CommandParameters[2].Split(", ", StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> stepsToReproduceBug = CommandParameters[2].Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
             PriorityType bugPriority = base.ParsePriorityParameter(CommandParameters[3],"Priority");
             SeverityType bugSeverity = base.ParseSeverityParameter(CommandParameters[4], "Severity");
             //BugStatusType bugStatus = base.ParseBugStatusParameter(CommandParameters[5], "Bug Status");

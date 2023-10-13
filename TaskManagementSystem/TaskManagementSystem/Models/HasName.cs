@@ -16,9 +16,9 @@ namespace TaskManagementSystem.Models
 
         public HasName(string name, int MinValue, int MaxValue, string ExceptionMessage)
         {
-            Name = name;
             this.minValue = MinValue;
             this.maxValue = MaxValue;
+            Name = name;
             this.exceptionMessage = $"{ExceptionMessage} of the member must be between {MinValue} and {MaxValue} symbols";
         }
 
