@@ -15,6 +15,9 @@ namespace TaskManagementSystem.Commands.Creating
         public CreateNewPersonCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
         }
+
+        //CommandParams should be:
+        //[0] = string, personName
         public override string Execute()
         {
             if(this.CommandParameters.Count != ExpectedNumberOfArguments)
@@ -24,7 +27,7 @@ namespace TaskManagementSystem.Commands.Creating
 
             string personName = this.CommandParameters[0];
 
-            var person = this.Repository.CreatePerson(personName);
+            this.Repository.CreatePerson(personName);
 
             return $"Person with the name {personName} was created!";
         }

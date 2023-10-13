@@ -16,6 +16,10 @@ namespace TaskManagementSystem.Commands.Creating
         {
         }
 
+        //CommandParams should be:
+        //[0] = string, teamName
+
+
         public override string Execute()
         {
             if (this.CommandParameters.Count != ExpectedNumberOfArguments)
@@ -25,7 +29,7 @@ namespace TaskManagementSystem.Commands.Creating
 
             string teamName = this.CommandParameters[0];
 
-            var team = this.Repository.CreateTeam(teamName);
+            this.Repository.CreateTeam(teamName);
 
             return $"Team with the name {teamName} was created!";
         }

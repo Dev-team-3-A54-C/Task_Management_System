@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Commands.Creating
+namespace TaskManagementSystem.Models.Contracts
 {
-    public class CreateNewBoardItemCommand
+    public interface IHasName
     {
-        //ToDo
+        string Name { get; }
     }
 }
