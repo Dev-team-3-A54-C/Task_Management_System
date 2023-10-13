@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Contracts
 {
-    public interface IBoard : IHasTasks, IHasActivityHistory
+    public interface IBoard : IHasName, IHasTasks, IHasActivityHistory
     {
     }
 }

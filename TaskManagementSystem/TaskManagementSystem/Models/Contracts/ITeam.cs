@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Contracts
 {
-    public interface ITeam
+    public interface ITeam : IHasName
     {
         IList<IMember> Member { get; }
         IList<IBoard> Boards { get; }

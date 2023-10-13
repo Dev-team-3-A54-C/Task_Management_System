@@ -11,7 +11,7 @@ namespace TaskManagementSystem.Models
 {
     public class Story : Task, IStory
     {
-        public Story(int id, string title, string description, PriorityType priority, SizeType size)
+        public Story(int id, string title, string description, SizeType size, PriorityType priority)
             : base(id, title, description)
         {
             Priority = priority;
