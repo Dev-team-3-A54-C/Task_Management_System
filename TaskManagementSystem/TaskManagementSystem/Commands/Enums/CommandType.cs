@@ -16,7 +16,7 @@ namespace TaskManagementSystem.Commands.Enums
         ShowTeamActivityCommand,
         AddPersonToTeamCommand,
         ShowAllTeamMembersCommand,
-        CreateNewBoardItemCommand,
+        CreateNewBoardInTeamCommand,
         ShowAllTeamBoardsCommand,
         ShowBoardActivityCommand,
         CreateNewBugInBoardCommand,
