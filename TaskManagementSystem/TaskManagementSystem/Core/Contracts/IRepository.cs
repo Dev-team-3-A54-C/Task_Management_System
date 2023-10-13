@@ -11,12 +11,17 @@ namespace TaskManagementSystem.Core.Contracts
 {
     public interface IRepository
     {
+        IList<ITeam> Teams { get; }
+        IList<IMember> Members { get; }
+        IList<IBoard> Boards { get; }
+        IList<ITask> Tasks { get; }
+
         ITeam CreateTeam(string name);
         ITeam GetTeam(string teamName);
 
         IComment CreateComment(string content, string author);
 
-        IBug CreateBug(string title, string description, PriorityType priority, SeverityType severity);
+        IBug CreateBug(string title, string description, PriorityType priority, SeverityType severity, IList<string> stepsToRep);
         IStory CreateStory(string title, string description, SizeType size, PriorityType priority);
         IFeedback CreateFeedback(string title, string description, int rating);
         ITask GetTask(string name);

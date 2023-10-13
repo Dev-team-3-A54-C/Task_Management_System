@@ -61,10 +61,10 @@ namespace TaskManagementSystem.Core
             IComment comment = new Comment(content, author);
             return comment;
         }
-        public IBug CreateBug(string title, string description, PriorityType priority, SeverityType severity)
+        public IBug CreateBug(string title, string description, PriorityType priority, SeverityType severity, IList<string> stepsToRep)
         {
             int nextId = tasks.Count;
-            IBug bug = new Bug(++nextId, title, description, priority, severity);
+            IBug bug = new Bug(++nextId, title, description, stepsToRep, priority, severity);
             tasks.Add(bug);
             return bug;
         }
