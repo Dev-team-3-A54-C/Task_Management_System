@@ -61,24 +61,24 @@ namespace TaskManagementSystem.Core
             IComment comment = new Comment(content, author);
             return comment;
         }
-        IBug CreateBug(string title, string description, PriorityType priority, SeverityType severity, BugStatusType status)
+        public IBug CreateBug(string title, string description, PriorityType priority, SeverityType severity)
         {
             int nextId = tasks.Count;
-            IBug bug = new Bug(++nextId, title, description, priority, severity, status);
+            IBug bug = new Bug(++nextId, title, description, priority, severity);
             tasks.Add(bug);
             return bug;
         }
-        public IStory CreateStory(string title, string description, SizeType size, StoryStatusType status, PriorityType priority)
+        public IStory CreateStory(string title, string description, SizeType size, PriorityType priority)
         {
             int nextId = tasks.Count;
-            IStory story = new Story(++nextId, title, description, size, status, priority);
+            IStory story = new Story(++nextId, title, description, size, priority);
             tasks.Add(story);
             return story;
         }
-        public IFeedback CreateFeedback(string title, string description, int rating, FeedbackStatusType status)
+        public IFeedback CreateFeedback(string title, string description, int rating)
         {
             int nextId = tasks.Count;
-            IFeedback feedback = new Feedback(++nextId, title, description, rating, status);
+            IFeedback feedback = new Feedback(++nextId, title, description, rating);
             tasks.Add(feedback);
             return feedback;
         }
