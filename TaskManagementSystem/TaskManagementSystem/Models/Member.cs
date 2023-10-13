@@ -52,8 +52,16 @@ namespace TaskManagementSystem.Models
 
         public override string ToString()
         {
-            return "todo";
-            // Todo
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"--- Member: {Name} ---");
+            stringBuilder.AppendLine($"     Tasks:");
+
+            foreach (ITask task in tasks)
+            {
+                stringBuilder.AppendLine($"      {task.Title}");
+            }
+
+            return stringBuilder.ToString();
         }
 
     }

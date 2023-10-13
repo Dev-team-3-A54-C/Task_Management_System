@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using TaskManagementSystem.Exceptions;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models.Enums;
 using TaskManagementSystem.ValidationHelpers;
@@ -85,10 +88,35 @@ namespace TaskManagementSystem.Models
             eventLog.Add(new Event(description));
         }
 
+        protected string ListComments()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"     Comments:");
+
+            int count = 1;
+            if (Comments.Count > 0)
+            {
+                foreach (IComment comment in Comments)
+                {
+                    stringBuilder.AppendLine($"         {count++} {comment.Author}");
+                    stringBuilder.AppendLine($"                 {comment.Message}");
+                    stringBuilder.AppendLine();
+                }
+            }
+            else
+                stringBuilder.AppendLine("      No Comments");
+
+            return stringBuilder.ToString();
+        }
+
         public override string ToString()
         {
-            return "todo";
-            // Todo     title, priority, status
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"--- Bug: {Title} ---");
+            stringBuilder.AppendLine($"     Id: {Id}");
+            stringBuilder.AppendLine($"     Description: {Description}");
+
+            return stringBuilder.ToString();
         }
     }
 }

@@ -93,8 +93,15 @@ namespace TaskManagementSystem.Models
 
         public override string ToString()
         {
-            return "todo";
-            // Todo     title, priority, status
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.AppendLine($"     Size: {Size}");
+            stringBuilder.AppendLine($"     Priority: {Priority}");
+            stringBuilder.AppendLine($"     Status: {Status}");
+            stringBuilder.AppendLine($"     Assignee: {Assignee}");
+            stringBuilder.AppendLine(ListComments());
+            
+            return stringBuilder.ToString();
         }
     }
 }

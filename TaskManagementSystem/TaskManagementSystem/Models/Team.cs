@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,8 +44,23 @@ namespace TaskManagementSystem.Models
 
         public override string ToString()
         {
-            return "todo";
-            // Todo
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"--- Team: {Name} ---");
+            stringBuilder.AppendLine($"     Members:");
+
+            foreach (IMember member in members)
+            {
+                stringBuilder.AppendLine($"      {member.Name}");
+            }
+
+            stringBuilder.AppendLine($"     Boards:");
+
+            foreach (IBoard board in boards)
+            {
+                stringBuilder.AppendLine($"      {board.Name}");
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }
