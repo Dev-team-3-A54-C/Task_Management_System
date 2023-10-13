@@ -1,10 +1,16 @@
-﻿namespace TaskManagementSystem
+﻿using TaskManagementSystem.Core;
+using TaskManagementSystem.Core.Contracts;
+
+namespace TaskManagementSystem
 {
     internal class StartUp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            IRepository repository = new Repository();
+            ICommandFactory commandFactory = new CommandFactory(repository);
+            IEngine engine = new Engine(commandFactory);
+            engine.Start();
         }
     }
 }
