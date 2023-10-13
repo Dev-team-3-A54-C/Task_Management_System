@@ -16,6 +16,13 @@ namespace TaskManagementSystem.Commands.Creating
         {
             
         }
+
+        //CommandParams should be:
+        //[0] = string, storyTitle
+        //[1] = string, storyDescription
+        //[2] = PriorityType, storyPriority,
+        //[3] = StorySize, storySize
+        //[4] = string, boardName
         public override string Execute()
         {
             if (this.CommandParameters.Count != ExpectedNumberOfArguments)

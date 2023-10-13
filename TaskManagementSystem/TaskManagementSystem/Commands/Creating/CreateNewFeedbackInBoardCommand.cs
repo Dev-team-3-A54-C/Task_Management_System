@@ -17,6 +17,12 @@ namespace TaskManagementSystem.Commands.Creating
         {
                
         }
+
+        //CommandParams should be:
+        //[0] = string, feedbackTitle
+        //[1] = string, feedbackDescription
+        //[2] = int, feedbackRating,
+        //[3] = boardName, string
         public override string Execute()
         {
             if (this.CommandParameters.Count != ExpectedNumberOfArguments)
