@@ -35,66 +35,66 @@ namespace TaskManagementSystem.Core
 
             switch (commandType)
             {
-                case CommandType.AddCommentToTaskCommand:
-                    return new AddCommentToTaskCommand();
-                case CommandType.AddPersonToTeamCommand:
-                    return new AddPersonToTeamCommand();
-                case CommandType.ChangePriorityOfBugCommand:
-                    return new ChangePriorityOfBugCommand();
-                case CommandType.ChangePriorityOfStoryCommand:
-                    return new ChangePriorityOfStoryCommand();
-                case CommandType.ChangeRatingOfFeedbackCommand:
-                    return new ChangeRatingOfFeedbackCommand();
-                case CommandType.ChangeSeverityOfBugCommand:
-                    return new ChangeSeverityOfBugCommand();
-                case CommandType.ChangeSizeOfStoryCommand:
-                    return new ChangeSizeOfStoryCommand();
-                case CommandType.ChangeStatusOfBugCommand:
-                    return new ChangeStatusOfBugCommand();
-                case CommandType.ChangeStatusOfStoryCommand:
-                    return new ChangeStatusOfStoryCommand();
-                case CommandType.ChangeStatusOfFeedbackCommand:
-                    return new ChangeStatusOfFeedbackCommand();
-                case CommandType.CreateNewBoardItemCommand:
-                    return new CreateNewBoardItemCommand();
+                //case CommandType.AddCommentToTaskCommand:
+                //    return new AddCommentToTaskCommand();
+                //case CommandType.AddPersonToTeamCommand:
+                //    return new AddPersonToTeamCommand();
+                //case CommandType.ChangePriorityOfBugCommand:
+                //    return new ChangePriorityOfBugCommand();
+                //case CommandType.ChangePriorityOfStoryCommand:
+                //    return new ChangePriorityOfStoryCommand();
+                //case CommandType.ChangeRatingOfFeedbackCommand:
+                //    return new ChangeRatingOfFeedbackCommand();
+                //case CommandType.ChangeSeverityOfBugCommand:
+                //    return new ChangeSeverityOfBugCommand();
+                //case CommandType.ChangeSizeOfStoryCommand:
+                //    return new ChangeSizeOfStoryCommand();
+                //case CommandType.ChangeStatusOfBugCommand:
+                //    return new ChangeStatusOfBugCommand();
+                //case CommandType.ChangeStatusOfStoryCommand:
+                //    return new ChangeStatusOfStoryCommand();
+                //case CommandType.ChangeStatusOfFeedbackCommand:
+                //    return new ChangeStatusOfFeedbackCommand();
+                case CommandType.CreateNewBoardInTeamCommand:
+                    return new CreateNewBoardInTeamCommand(commandParameters, repository);
                 case CommandType.CreateNewBugInBoardCommand:
-                    return new CreateNewBugInBoardCommand();
+                    return new CreateNewBugInBoardCommand(commandParameters, repository);
                 case CommandType.CreateNewFeedbackInBoardCommand:
-                    return new CreateNewFeedbackInBoardCommand();
+                    return new CreateNewFeedbackInBoardCommand(commandParameters, repository);
                 case CommandType.CreateNewPersonCommand:
-                    return new CreateNewPersonCommand();
+                    return new CreateNewPersonCommand(commandParameters, repository);
                 case CommandType.CreateNewStoryInBoardCommand:
-                    return new CreateNewStoryInBoardCommand();
+                    return new CreateNewStoryInBoardCommand(commandParameters, repository);
                 case CommandType.CreateNewTeamCommand:
-                    return new CreateNewTeamCommand();
+                    return new CreateNewTeamCommand(commandParameters, repository);
                 case CommandType.ListAllBugsCommand:
-                    return new ListAllBugsCommand();
-                case CommandType.ListAllFeedbacksCommand:
-                    return new ListAllFeedbacksCommand();
-                case CommandType.ListAllStoriesCommand:
-                    return new ListAllStoriesCommand();
-                case CommandType.ListAllTasksCommand:
-                    return new ListAllTasksCommand();
-                case CommandType.ListAllTasksWithAssigneeCommand:
-                    return new ListAllTasksWithAssigneeCommand();
-                case CommandType.AssignPersonToTaskCommand:
-                    return new AssignPersonToTaskCommand();
-                case CommandType.UnassignPersonFromTaskCommand:
-                    return new UnassignPersonFromTaskCommand();
-                case CommandType.ShowAllPeopleCommand:
-                    return new ShowAllPeopleCommand();
-                case CommandType.ShowAllTeamBoardsCommand:
-                    return new ShowAllTeamBoardsCommand();
-                case CommandType.ShowAllTeamMembersCommand:
-                    return new ShowAllTeamMembersCommand();
-                case CommandType.ShowAllTeamsCommand:
-                    return new ShowAllTeamsCommand();
-                case CommandType.ShowBoardActivityCommand:
-                    return new ShowBoardActivityCommand();
-                case CommandType.ShowPersonActivityCommand:
-                    return new ShowPersonActivityCommand();
-                case CommandType.ShowTeamActivityCommand:
-                    return new ShowTeamActivityCommand();
+                    return new ListAllBugsCommand(repository);
+                //case CommandType.ListAllFeedbacksCommand:
+                //    return new ListAllFeedbacksCommand();
+                //case CommandType.ListAllStoriesCommand:
+                //    return new ListAllStoriesCommand();
+                //case CommandType.ListAllTasksCommand:
+                //    return new ListAllTasksCommand();
+                //case CommandType.ListAllTasksWithAssigneeCommand:
+                //    return new ListAllTasksWithAssigneeCommand();
+                //case CommandType.AssignPersonToTaskCommand:
+                //    return new AssignPersonToTaskCommand();
+                //case CommandType.UnassignPersonFromTaskCommand:
+                //    return new UnassignPersonFromTaskCommand();
+                //case CommandType.ShowAllPeopleCommand:
+                //    return new ShowAllPeopleCommand();
+                //case CommandType.ShowAllTeamBoardsCommand:
+                //    return new ShowAllTeamBoardsCommand();
+                //case CommandType.ShowAllTeamMembersCommand:
+                //    return new ShowAllTeamMembersCommand();
+                //case CommandType.ShowAllTeamsCommand:
+                //    return new ShowAllTeamsCommand();
+                //case CommandType.ShowBoardActivityCommand:
+                //    return new ShowBoardActivityCommand();
+                //case CommandType.ShowPersonActivityCommand:
+                //    return new ShowPersonActivityCommand();
+                //case CommandType.ShowTeamActivityCommand:
+                //    return new ShowTeamActivityCommand();
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
             }
