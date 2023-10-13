@@ -40,7 +40,7 @@ namespace TaskManagementSystem.Commands.Creating
             //BugStatusType bugStatus = base.ParseBugStatusParameter(CommandParameters[5], "Bug Status");
             string boardName = CommandParameters[5];
 
-            var newBug = this.Repository.CreateBug(bugTitle, bugDescription, stepsToReproduceBug, bugPriority, bugSeverity);
+            var newBug = this.Repository.CreateBug(bugTitle, bugDescription, bugPriority, bugSeverity, stepsToReproduceBug);
 
             var board = this.Repository.GetBoard(boardName);
             if(board == null)
