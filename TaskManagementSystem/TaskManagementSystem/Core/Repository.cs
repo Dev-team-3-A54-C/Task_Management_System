@@ -84,7 +84,7 @@ namespace TaskManagementSystem.Core
         }
         public ITask GetTask(string name)
         {
-            ITask task = tasks.FirstOrDefault(x => x.Name == name);
+            ITask task = tasks.FirstOrDefault(x => x.Title == name);
             return task;
         }
         public IMember CreateMember(string name)

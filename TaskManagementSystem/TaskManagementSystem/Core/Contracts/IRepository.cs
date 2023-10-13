@@ -16,9 +16,9 @@ namespace TaskManagementSystem.Core.Contracts
 
         IComment CreateComment(string content, string author);
 
-        IBug CreateBug(string title, string description, PriorityType priority, SeverityType severity, BugStatusType status);
-        IStory CreateStory(string title, string description, SizeType size, StoryStatusType status, PriorityType priority);
-        IFeedback CreateFeedback(string title, string description, int rating, FeedbackStatusType status);
+        IBug CreateBug(string title, string description, PriorityType priority, SeverityType severity);
+        IStory CreateStory(string title, string description, SizeType size, PriorityType priority);
+        IFeedback CreateFeedback(string title, string description, int rating);
         ITask GetTask(string name);
 
         IMember CreateMember(string name);
