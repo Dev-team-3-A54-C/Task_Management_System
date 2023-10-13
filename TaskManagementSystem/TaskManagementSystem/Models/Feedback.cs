@@ -17,6 +17,7 @@ namespace TaskManagementSystem.Models
         {
             Rating = rating;
             Status = FeedbackStatusType.New;
+            base.AddEventToLog($"Feedback with \"{Title}\" created");
         }
 
         public int Rating { get; private set; }
