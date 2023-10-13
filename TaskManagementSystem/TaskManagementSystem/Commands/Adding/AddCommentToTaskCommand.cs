@@ -3,11 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManagementSystem.Core.Contracts;
+using TaskManagementSystem.Exceptions;
 
 namespace TaskManagementSystem.Commands.Adding
 {
-    public class AddCommentToTaskCommand
+    public class AddCommentToTaskCommand : BaseCommand
     {
-        //ToDo
+        public const int ExpectedNumberOfArguments = 3;
+
+        public AddCommentToTaskCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
+        {            
+        }
+
+        //CommandParams should be:
+        //[0] = string, commentMessage
+        //[1] = string, commentAuthor
+        //[2] = string, taskTitle
+        public override string Execute()
+        {
+            if (this.CommandParameters.Count != ExpectedNumberOfArguments)
+            {
+                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}.");
+            }
+
+            string commentMessage = this.CommandParameters[0];
+            string commentAuthor = this.CommandParameters[1];
+            string taskTitle = this.CommandParameters[2];
+
+            var comment = this.Repository.CreateComment(commentMessage, commentAuthor);
+            if (comment == null)
+            {
+                throw new InvalidUserInputException($"The comment you tried to add had invalid message/author.");
+            }
+
+            var task = this.Repository.GetTask(taskTitle);
+            if (task == null)
+            {
+                throw new InvalidTaskException($"Task with the title '{taskTitle}' does not exist.");
+            }
+
+            task.AddComment(comment);
+
+            return $"Comment with author '{commentAuthor}' was added to task '{taskTitle}'.";
+        }
     }
 }
