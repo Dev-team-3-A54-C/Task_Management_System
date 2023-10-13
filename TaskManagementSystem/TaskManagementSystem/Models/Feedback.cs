@@ -59,6 +59,8 @@ namespace TaskManagementSystem.Models
 
         public void SetRating(int rating)
         {
+            ValidationHelpers.ValidationHelper.ValidateIfIntIsNegative(rating, "Rating cannot be null");
+
             int oldRating = Rating;
             Rating = rating;
             base.AddEventToLog($"The rating of the feedback \"{Title}\" changed from \"{oldRating}\" to \"{Rating}\"");
