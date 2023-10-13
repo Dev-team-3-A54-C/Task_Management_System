@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 using TaskManagementSystem.Exceptions;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models.Enums;
@@ -112,8 +114,22 @@ namespace TaskManagementSystem.Models
 
         public override string ToString()
         {
-            return "todo";
-            // Todo title, priority, status
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.AppendLine($"     Steps to Reproduce:");
+
+            int count = 1;
+            foreach(string step in StepsToReproduce)
+            {
+                stringBuilder.AppendLine($"         {count++}. {step}");
+            }
+
+            stringBuilder.AppendLine($"     Priority: {Priority}");
+            stringBuilder.AppendLine($"     Severity: {Severity}");
+            stringBuilder.AppendLine($"     Status: {Status}");
+            stringBuilder.AppendLine(ListComments());
+
+            return stringBuilder.ToString();
         }
     }
 }

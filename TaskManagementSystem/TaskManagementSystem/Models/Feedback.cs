@@ -17,6 +17,7 @@ namespace TaskManagementSystem.Models
         {
             Rating = rating;
             Status = FeedbackStatusType.New;
+            base.AddEventToLog($"Feedback with \"{Title}\" created");
         }
 
         public int Rating { get; private set; }
@@ -68,8 +69,12 @@ namespace TaskManagementSystem.Models
 
         public override string ToString()
         {
-            return "todo";
-            // Todo title, priority, status
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.AppendLine($"     Rating: {Rating}");
+            stringBuilder.AppendLine($"     Status: {Status}");
+
+            return stringBuilder.ToString();
         }
     }
 }
