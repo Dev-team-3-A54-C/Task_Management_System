@@ -9,9 +9,10 @@ namespace TaskManagementSystem.Models
     {
         private IList<string> reproductionSteps = new List<string>();
 
-        public Bug(int id, string title, string description, PriorityType priority, SeverityType severity)
+        public Bug(int id, string title, string description, IList<string> stepsToReproduce, PriorityType priority, SeverityType severity)
             : base(id, title, description)
         {
+            StepsToReproduce = stepsToReproduce;
             Priority = priority;
             Severity = severity;
             Status = BugStatusType.Active;
@@ -21,6 +22,10 @@ namespace TaskManagementSystem.Models
         public IList<string> StepsToReproduce
         {
             get => new List<string>(reproductionSteps);
+            private set
+            {
+                this.reproductionSteps = value;
+            }
         }
 
         public PriorityType Priority { get; private set; }
