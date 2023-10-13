@@ -24,6 +24,9 @@ namespace TaskManagementSystem.Core.Contracts
         IBug CreateBug(string title, string description, PriorityType priority, SeverityType severity, IList<string> stepsToRep);
         IStory CreateStory(string title, string description, SizeType size, PriorityType priority);
         IFeedback CreateFeedback(string title, string description, int rating);
+        IBug GetBug(string title);
+        IStory GetStory(string title);
+        IFeedback GetFeedback(string title);
         ITask GetTask(string name);
 
         IMember CreateMember(string name);

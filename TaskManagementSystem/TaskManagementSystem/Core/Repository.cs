@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using TaskManagementSystem.Core.Contracts;
 using TaskManagementSystem.Models;
 using TaskManagementSystem.Models.Contracts;
@@ -82,6 +83,23 @@ namespace TaskManagementSystem.Core
             tasks.Add(feedback);
             return feedback;
         }
+        public IBug GetBug(string title)
+        {
+            IBug bug = (IBug)tasks.FirstOrDefault(x => x.Title == title && x.GetType() == typeof(Bug));
+            return bug;
+        }
+
+        public IStory GetStory(string title)
+        {
+            IStory story = (IStory)tasks.FirstOrDefault(x => x.Title == title && x.GetType() == typeof(Story));
+            return story;
+        }
+
+        public IFeedback GetFeedback(string title)
+        {
+            IFeedback feedback = (IFeedback)tasks.FirstOrDefault(x => x.Title == title && x.GetType() == typeof(Feedback));
+            return feedback;
+        }
         public ITask GetTask(string name)
         {
             ITask task = tasks.FirstOrDefault(x => x.Title == name);
@@ -111,5 +129,6 @@ namespace TaskManagementSystem.Core
             return board;
         }
 
+        
     }
 }
