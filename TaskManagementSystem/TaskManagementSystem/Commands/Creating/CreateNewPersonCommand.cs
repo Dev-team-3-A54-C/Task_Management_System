@@ -27,7 +27,7 @@ namespace TaskManagementSystem.Commands.Creating
 
             string personName = this.CommandParameters[0];
 
-            this.Repository.CreatePerson(personName);
+            this.Repository.CreateMember(personName);
 
             return $"Person with the name {personName} was created!";
         }
