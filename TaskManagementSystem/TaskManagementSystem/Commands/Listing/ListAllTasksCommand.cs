@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using TaskManagementSystem.Core.Contracts;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models;
+using Task = TaskManagementSystem.Models.Task;
 
 namespace TaskManagementSystem.Commands.Listing
 {
@@ -19,7 +19,6 @@ namespace TaskManagementSystem.Commands.Listing
             //todo
             StringBuilder sb = new StringBuilder();
             IList<ITask> tasks = this.Repository.Tasks.Where(x => x.GetType() == typeof(Task))
-                .Select(x => (ITask)x)
                 .OrderBy(x => x.Title)
                 .ToList();
             foreach (var item in tasks)
