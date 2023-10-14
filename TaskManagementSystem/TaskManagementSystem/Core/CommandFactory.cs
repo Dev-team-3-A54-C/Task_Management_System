@@ -35,26 +35,26 @@ namespace TaskManagementSystem.Core
 
             switch (commandType)
             {
-                //case CommandType.AddCommentToTaskCommand:
-                //    return new AddCommentToTaskCommand();
-                //case CommandType.AddPersonToTeamCommand:
-                //    return new AddPersonToTeamCommand();
-                //case CommandType.ChangePriorityOfBugCommand:
-                //    return new ChangePriorityOfBugCommand();
-                //case CommandType.ChangePriorityOfStoryCommand:
-                //    return new ChangePriorityOfStoryCommand();
-                //case CommandType.ChangeRatingOfFeedbackCommand:
-                //    return new ChangeRatingOfFeedbackCommand();
-                //case CommandType.ChangeSeverityOfBugCommand:
-                //    return new ChangeSeverityOfBugCommand();
-                //case CommandType.ChangeSizeOfStoryCommand:
-                //    return new ChangeSizeOfStoryCommand();
-                //case CommandType.ChangeStatusOfBugCommand:
-                //    return new ChangeStatusOfBugCommand();
-                //case CommandType.ChangeStatusOfStoryCommand:
-                //    return new ChangeStatusOfStoryCommand();
-                //case CommandType.ChangeStatusOfFeedbackCommand:
-                //    return new ChangeStatusOfFeedbackCommand();
+                case CommandType.AddCommentToTask:
+                    return new AddCommentToTaskCommand(commandParameters, repository);
+                case CommandType.AddPersonToTeam:
+                    return new AddPersonToTeamCommand(commandParameters, repository);
+                case CommandType.ChangePriorityOfBug:
+                    return new ChangePriorityOfBugCommand(commandParameters, repository);
+                case CommandType.ChangePriorityOfStory:
+                    return new ChangePriorityOfStoryCommand(commandParameters, repository);
+                case CommandType.ChangeRatingOfFeedback:
+                    return new ChangeRatingOfFeedbackCommand(commandParameters, repository);
+                case CommandType.ChangeSeverityOfBug:
+                    return new ChangeSeverityOfBugCommand(commandParameters, repository);
+                case CommandType.ChangeSizeOfStory:
+                    return new ChangeSizeOfStoryCommand(commandParameters, repository);
+                case CommandType.ChangeStatusOfBug:
+                    return new ChangeStatusOfBugCommand(commandParameters, repository);
+                case CommandType.ChangeStatusOfStory:
+                    return new ChangeStatusOfStoryCommand(commandParameters, repository);
+                case CommandType.ChangeStatusOfFeedback:
+                    return new ChangeStatusOfFeedbackCommand(commandParameters, repository);
                 case CommandType.CreateNewBoardInTeam:
                     return new CreateNewBoardInTeamCommand(commandParameters, repository);
                 case CommandType.CreateNewBugInBoard:
@@ -69,31 +69,31 @@ namespace TaskManagementSystem.Core
                     return new CreateNewTeamCommand(commandParameters, repository);
                 case CommandType.ListAllBugs:
                     return new ListAllBugsCommand(repository);
-                //case CommandType.ListAllFeedbacksCommand:
-                //    return new ListAllFeedbacksCommand();
-                //case CommandType.ListAllStoriesCommand:
-                //    return new ListAllStoriesCommand();
-                //case CommandType.ListAllTasksCommand:
-                //    return new ListAllTasksCommand();
-                //case CommandType.ListAllTasksWithAssigneeCommand:
-                //    return new ListAllTasksWithAssigneeCommand();
-                //case CommandType.AssignPersonToTaskCommand:
+                case CommandType.ListAllFeedbacks:
+                    return new ListAllFeedbacksCommand(repository);
+                case CommandType.ListAllStories:
+                    return new ListAllStoriesCommand(repository);
+                case CommandType.ListAllTasks:
+                    return new ListAllTasksCommand(repository);
+                case CommandType.ListAllTasksWithAssignee:
+                    return new ListAllTasksWithAssigneeCommand(commandParameters, repository);
+                //case CommandType.AssignPersonToTask:
                 //    return new AssignPersonToTaskCommand();
-                //case CommandType.UnassignPersonFromTaskCommand:
+                //case CommandType.UnassignPersonFromTask:
                 //    return new UnassignPersonFromTaskCommand();
-                //case CommandType.ShowAllPeopleCommand:
+                //case CommandType.ShowAllPeople:
                 //    return new ShowAllPeopleCommand();
-                //case CommandType.ShowAllTeamBoardsCommand:
+                //case CommandType.ShowAllTeamBoards:
                 //    return new ShowAllTeamBoardsCommand();
-                //case CommandType.ShowAllTeamMembersCommand:
+                //case CommandType.ShowAllTeamMembers:
                 //    return new ShowAllTeamMembersCommand();
-                //case CommandType.ShowAllTeamsCommand:
+                //case CommandType.ShowAllTeams:
                 //    return new ShowAllTeamsCommand();
-                //case CommandType.ShowBoardActivityCommand:
+                //case CommandType.ShowBoardActivity:
                 //    return new ShowBoardActivityCommand();
-                //case CommandType.ShowPersonActivityCommand:
+                //case CommandType.ShowPersonActivity:
                 //    return new ShowPersonActivityCommand();
-                //case CommandType.ShowTeamActivityCommand:
+                //case CommandType.ShowTeamActivity:
                 //    return new ShowTeamActivityCommand();
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
@@ -110,6 +110,7 @@ namespace TaskManagementSystem.Core
 
         private List<string> ExtractCommandParameters(string commandLine)
         {
+            //todo
             List<string> parameters = new List<string>();
 
             var indexOfOpenComment = commandLine.IndexOf(CommentOpenSymbol);
