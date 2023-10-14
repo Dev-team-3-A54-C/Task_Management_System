@@ -35,7 +35,7 @@ namespace TaskManagementSystem.Commands.Changing
                 throw new InvalidBugException($"Bug with title '{bugTitle}' does not exist.");
             }
 
-            string oldPriority = bug.Priority;
+            string oldPriority = bug.Priority.ToString();
 
             bug.SetPriority(priority);
 

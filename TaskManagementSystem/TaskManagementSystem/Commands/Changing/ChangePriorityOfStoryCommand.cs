@@ -35,7 +35,7 @@ namespace TaskManagementSystem.Commands.Changing
                 throw new InvalidStoryException($"Story with title '{storyTitle}' does not exist.");
             }
 
-            string oldPriority = story.Priority;
+            string oldPriority = story.Priority.ToString();
 
             story.SetPriority(priority);
 
