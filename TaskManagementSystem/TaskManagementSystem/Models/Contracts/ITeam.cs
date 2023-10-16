@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Contracts
 {
-    public interface ITeam : IHasName
+    public interface ITeam : IHasName, IHasActivityHistory
     {
-        IList<IMember> Member { get; }
+        IList<IMember> Members { get; }
         IList<IBoard> Boards { get; }
         void AddMember(IMember member);
         void AddBoard(IBoard board);
+        string ToString();
     }
 }

@@ -19,6 +19,7 @@ namespace TaskManagementSystem.Models
             Severity = severity;
             Status = BugStatusType.Active;
             base.AddEventToLog($"Bug with \"{Title}\" created");
+            TaskType = TaskType.Bug;
         }
 
         public IList<string> StepsToReproduce

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Contracts
 {
-    public interface IBoard : IHasName, IHasTasks, IHasActivityHistory
+    public enum TaskType
     {
-        string ToString();
+        Bug,
+        Story,
+        Feedback
     }
 }

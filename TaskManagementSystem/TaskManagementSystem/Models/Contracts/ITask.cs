@@ -17,8 +17,10 @@ namespace TaskManagementSystem.Models.Contracts
 
         IList<IComment> Comments { get; }
         IList<IEvent> EventLog { get; }
+        TaskType TaskType { get; }
         void AdvanceStatus();
         void ReverseStatus();
         void AddComment(IComment comment);
+        string ToString();
     }
 }

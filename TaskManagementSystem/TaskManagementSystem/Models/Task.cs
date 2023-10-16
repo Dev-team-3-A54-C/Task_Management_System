@@ -28,6 +28,7 @@ namespace TaskManagementSystem.Models
 
         private IList<IComment> comments = new List<IComment>();
         private IList<IEvent> eventLog = new List<IEvent>();
+        private TaskType taskType;
 
         public Task(int id, string title, string description)
         {
@@ -47,7 +48,7 @@ namespace TaskManagementSystem.Models
         public string Title
         {
             get => this.title;
-            private set
+            protected set
             {
                 ValidationHelper.ValidateStringLength(value, TitleMinValue, TitleMaxValue, TitleExceptionMessage);
                 this.title = value;
@@ -72,6 +73,15 @@ namespace TaskManagementSystem.Models
         public IList<IEvent> EventLog
         {
             get => new List<IEvent>(eventLog);
+        }
+
+       public TaskType TaskType
+        {
+            get => this.taskType;
+            protected set
+            {
+                this.taskType = value;
+            }
         }
 
         public abstract void AdvanceStatus();
