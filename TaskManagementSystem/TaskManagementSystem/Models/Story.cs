@@ -17,6 +17,7 @@ namespace TaskManagementSystem.Models
             Priority = priority;
             Size = size;
             Status = StoryStatusType.NotDone;
+            TaskType = TaskType.Story;
         }
 
         public SizeType Size { get; private set; }
