@@ -20,5 +20,6 @@ namespace TaskManagementSystem.Models.Contracts
         void AdvanceStatus();
         void ReverseStatus();
         void AddComment(IComment comment);
+        string ToString();
     }
 }

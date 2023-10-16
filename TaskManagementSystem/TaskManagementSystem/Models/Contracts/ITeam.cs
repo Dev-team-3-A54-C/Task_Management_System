@@ -12,5 +12,6 @@ namespace TaskManagementSystem.Models.Contracts
         IList<IBoard> Boards { get; }
         void AddMember(IMember member);
         void AddBoard(IBoard board);
+        string ToString();
     }
 }

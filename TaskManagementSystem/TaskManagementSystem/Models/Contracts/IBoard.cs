@@ -8,5 +8,6 @@ namespace TaskManagementSystem.Models.Contracts
 {
     public interface IBoard : IHasName, IHasTasks, IHasActivityHistory
     {
+        string ToString();
     }
 }
