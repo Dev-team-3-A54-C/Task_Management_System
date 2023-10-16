@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Models.Contracts
+namespace TaskManagementSystem.Models.Enums
 {
     public enum TaskType
     {

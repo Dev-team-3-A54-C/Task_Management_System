@@ -5,6 +5,7 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManagementSystem.Exceptions;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models.Enums;
 
@@ -44,12 +45,18 @@ namespace TaskManagementSystem.Models
 
         public void AddMember(IMember member)
         {
+            if (members.Contains(member))
+                throw new DuplicateItemException($"Member with name \"{member.Name}\" already exist in the team \"{Name}\"");
+
             members.Add(member);
             AddEventToLog($"Added \"{member.Name}\" to team \"{Name}\"");
         }
 
         public void AddBoard(IBoard board)
         {
+            if (boards.Contains(board))
+                throw new DuplicateItemException($"Board with name \"{board.Name}\" already exist in the team \"{Name}\"");
+
             boards.Add(board);
             AddEventToLog($"Added \"{board.Name}\" to team \"{Name}\"");
         }
