@@ -36,6 +36,12 @@ namespace TaskManagementSystem.Models
         {
             get => new List<IBoard>(boards);
         }
+
+        public IList<IEvent> EventLog
+        {
+            get => new List<IEvent>(eventLog);
+        }
+
         public void AddMember(IMember member)
         {
             members.Add(member);
