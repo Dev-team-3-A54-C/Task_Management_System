@@ -8,7 +8,7 @@ namespace TaskManagementSystem.Models.Contracts
 {
     public interface ITeam : IHasName
     {
-        IList<IMember> Member { get; }
+        IList<IMember> Members { get; }
         IList<IBoard> Boards { get; }
         void AddMember(IMember member);
         void AddBoard(IBoard board);

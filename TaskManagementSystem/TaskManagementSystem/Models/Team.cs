@@ -23,7 +23,7 @@ namespace TaskManagementSystem.Models
         {
         }
 
-        public IList<IMember> Member
+        public IList<IMember> Members
         {
             get => new List<IMember>(members);
         }
