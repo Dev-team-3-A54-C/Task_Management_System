@@ -31,7 +31,7 @@ namespace TaskManagementSystem.Commands.Listing
             IMember member = Repository.GetMember(name);
 
             IList<IBug> tasksWithAssignee = this.Repository.Tasks
-                .Where(x => x.GetType() == typeof(Story) || x.GetType() == typeof(Bug))
+                .Where(x => x.TaskType == TaskType.Story || x.TaskType == TaskType.Bug)
                 .Select(x => (IBug)x)
                 .Where(x => x.Assignee == member)
                 .OrderBy(x => x.Title)
