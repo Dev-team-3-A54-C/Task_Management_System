@@ -9,8 +9,9 @@ using TaskManagementSystem.Models.Enums;
 
 namespace TaskManagementSystem.Models
 {
-    public class Board : HasName, IBoard
+    public class Board : IBoard
     {
+        private string name = "";
         private const int NameMinValue = 5;
         private const int NameMaxValue = 10;
         private const string NameExceptionMessage = "Name of the board must be between {0} and {1} symbols";
@@ -19,9 +20,19 @@ namespace TaskManagementSystem.Models
         private IList<IEvent> eventLog = new List<IEvent>();
 
         public Board(string name)
-            : base(name, NameMinValue, NameMaxValue, NameExceptionMessage)
         {
-            AddEventToLog($"Board with name \"{base.Name}\" created");
+            Name = name;
+            AddEventToLog($"Board with name \"{Name}\" created");
+        }
+
+        public string Name
+        {
+            get => this.name;
+            protected set
+            {
+                ValidationHelpers.ValidationHelper.ValidateStringLength(value, NameMinValue, NameMaxValue, NameExceptionMessage);
+                this.name = value;
+            }
         }
 
         public IList<ITask> Tasks
@@ -37,13 +48,13 @@ namespace TaskManagementSystem.Models
         public void AddTask(ITask task)
         {
             tasks.Add(task);
-            AddEventToLog($"Task \"{task.Title}\" added to board \"{base.Name}\"");
+            AddEventToLog($"Task \"{task.Title}\" added to board \"{Name}\"");
         }
 
         public void RemoveTask(ITask task)
         {
             tasks.Remove(task);
-            AddEventToLog($"Task \"{task.Title}\" removed from board \"{base.Name}\"");
+            AddEventToLog($"Task \"{task.Title}\" removed from board \"{Name}\"");
         }
 
         public void AddEventToLog(string description)

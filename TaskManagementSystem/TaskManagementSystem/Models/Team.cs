@@ -11,9 +11,9 @@ using TaskManagementSystem.Models.Enums;
 
 namespace TaskManagementSystem.Models
 {
-    public class Team : HasName, ITeam
+    public class Team : ITeam
     {
-       
+        private string name = "";
         private const int NameMinValue = 5;
         private const int NameMaxValue = 15;
         private const string NameExceptionMessage = "Name of the team must be between {0} and {1} symbols";
@@ -23,9 +23,19 @@ namespace TaskManagementSystem.Models
         private IList<IEvent> eventLog = new List<IEvent>();
 
         public Team(string name)
-            :base(name, NameMinValue, NameMaxValue, NameExceptionMessage)
         {
+            Name = name;
             AddEventToLog($"Created team with name \"{Name}\"");
+        }
+
+        public string Name
+        {
+            get => this.name;
+            protected set
+            {
+                ValidationHelpers.ValidationHelper.ValidateStringLength(value, NameMinValue, NameMaxValue, NameExceptionMessage);
+                this.name = value;
+            }
         }
 
         public IList<IMember> Members

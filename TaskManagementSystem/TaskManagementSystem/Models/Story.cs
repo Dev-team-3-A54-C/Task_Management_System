@@ -18,6 +18,7 @@ namespace TaskManagementSystem.Models
             Size = size;
             Status = StoryStatusType.NotDone;
             TaskType = TaskType.Story;
+            base.AddEventToLog($"Story with \"{Title}\" created");
         }
 
         public SizeType Size { get; private set; }
