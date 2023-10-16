@@ -5,14 +5,15 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManagementSystem.Exceptions;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models.Enums;
 
 namespace TaskManagementSystem.Models
 {
-    public class Team : HasName, ITeam
+    public class Team : ITeam
     {
-       
+        private string name = "";
         private const int NameMinValue = 5;
         private const int NameMaxValue = 15;
         private const string NameExceptionMessage = "Name of the team must be between {0} and {1} symbols";
@@ -22,9 +23,19 @@ namespace TaskManagementSystem.Models
         private IList<IEvent> eventLog = new List<IEvent>();
 
         public Team(string name)
-            :base(name, NameMinValue, NameMaxValue, NameExceptionMessage)
         {
+            Name = name;
             AddEventToLog($"Created team with name \"{Name}\"");
+        }
+
+        public string Name
+        {
+            get => this.name;
+            protected set
+            {
+                ValidationHelpers.ValidationHelper.ValidateStringLength(value, NameMinValue, NameMaxValue, NameExceptionMessage);
+                this.name = value;
+            }
         }
 
         public IList<IMember> Members
@@ -44,12 +55,18 @@ namespace TaskManagementSystem.Models
 
         public void AddMember(IMember member)
         {
+            if (members.Contains(member))
+                throw new DuplicateItemException($"Member with name \"{member.Name}\" already exist in the team \"{Name}\"");
+
             members.Add(member);
             AddEventToLog($"Added \"{member.Name}\" to team \"{Name}\"");
         }
 
         public void AddBoard(IBoard board)
         {
+            if (boards.Contains(board))
+                throw new DuplicateItemException($"Board with name \"{board.Name}\" already exist in the team \"{Name}\"");
+
             boards.Add(board);
             AddEventToLog($"Added \"{board.Name}\" to team \"{Name}\"");
         }

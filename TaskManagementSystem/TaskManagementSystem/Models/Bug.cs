@@ -18,8 +18,8 @@ namespace TaskManagementSystem.Models
             Priority = priority;
             Severity = severity;
             Status = BugStatusType.Active;
-            base.AddEventToLog($"Bug with \"{Title}\" created");
             TaskType = TaskType.Bug;
+            base.AddEventToLog($"Bug with \"{Title}\" created");
         }
 
         public IList<string> StepsToReproduce

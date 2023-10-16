@@ -8,19 +8,30 @@ using TaskManagementSystem.Models.Enums;
 
 namespace TaskManagementSystem.Models
 {
-    public class Member : HasName, IMember
+    public class Member : IMember
     {
+        private string name = "";
         private const int NameMinValue = 5;
         private const int NameMaxValue = 15;
-        private const string NameExceptionMessage = "Name";
+        private const string NameExceptionMessage = "Name of the member must be between {0} and {1} symbols";
 
         private IList<ITask> tasks = new List<ITask>();
         private IList<IEvent> eventLog = new List<IEvent>();
 
         public Member(string name)
-            : base(name, NameMinValue, NameMaxValue, NameExceptionMessage)
         {
-            AddEventToLog($"Member with name \"{base.Name}\" created");
+            Name = name;
+            AddEventToLog($"Member with name \"{Name}\" created");
+        }
+
+        public string Name
+        {
+            get => this.name;
+            protected set
+            {
+                ValidationHelpers.ValidationHelper.ValidateStringLength(value, NameMinValue, NameMaxValue, NameExceptionMessage);
+                this.name = value;
+            }
         }
 
         public IList<ITask> Tasks
@@ -36,13 +47,13 @@ namespace TaskManagementSystem.Models
         public void AddTask(ITask task)
         {
             tasks.Add(task);
-            AddEventToLog($"Task \"{task.Title}\" added to {base.Name}'s list");
+            AddEventToLog($"Task \"{task.Title}\" added to {Name}'s list");
         }
 
         public void RemoveTask(ITask task)
         {
             tasks.Remove(task);
-            AddEventToLog($"Task \"{task.Title}\" remvoed from {base.Name}'s list");
+            AddEventToLog($"Task \"{task.Title}\" remvoed from {Name}'s list");
         }
 
         public void AddEventToLog(string description)

@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Exceptions;
+using TaskManagementSystem.Models.Contracts;
 
 namespace TaskManagementSystem.ValidationHelpers
 {
