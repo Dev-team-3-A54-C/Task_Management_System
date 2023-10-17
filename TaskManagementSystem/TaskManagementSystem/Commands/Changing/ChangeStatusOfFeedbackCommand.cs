@@ -38,38 +38,12 @@ namespace TaskManagementSystem.Commands.Changing
 
             string oldStatus = feedback.Status.ToString();
 
-            ExecuteHelper(feedback, newStatus);
+            this.Repository.UpdateFeedbackStatus(feedback, newStatus);
+            
 
             return $"Status of feedback '{feedbackTitle}' was changed from '{oldStatus}' to '{newStatus}'.";
 
         }
-
-        private void ExecuteHelper(IFeedback feedback, FeedbackStatusType newStatus)
-        {
-            //If statusDiff is > 0 then we need to RevertStatus by abs statusDiff times
-            //else if statusDiff is < 0 then we need to AdvanceStatus by statusDiff times
-            //else (statusDiff == 0) that means the new status is the same as the old one
-
-            int statusDiff = (int)feedback.Status - (int)newStatus;
-
-            if (statusDiff > 0)
-            {
-                while (statusDiff != 0)
-                {
-                    feedback.ReverseStatus();
-                    statusDiff--;
-                }
-            }
-            else if (statusDiff < 0)
-            {
-                while (statusDiff != 0)
-                {
-                    feedback.AdvanceStatus();
-                    statusDiff++;
-                }
-            }
-
-            //Clarification needed when new Status is same as old status
-        }
+        
     }
 }

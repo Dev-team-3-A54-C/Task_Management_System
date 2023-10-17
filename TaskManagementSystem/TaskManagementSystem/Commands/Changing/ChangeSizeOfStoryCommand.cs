@@ -37,7 +37,8 @@ namespace TaskManagementSystem.Commands.Changing
 
             string oldSize = story.Size.ToString();
 
-            story.SetSize(newSize);
+            this.Repository.UpdateStorySize(story, newSize);
+
 
             return $"Priority of story '{storyTitle}' was changed from '{oldSize}' to '{newSize}'.";
 

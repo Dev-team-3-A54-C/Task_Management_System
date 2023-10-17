@@ -29,6 +29,7 @@ namespace TaskManagementSystem.Commands.Changing
             string bugTitle = this.CommandParameters[0];
             PriorityType priority = base.ParsePriorityParameter(this.CommandParameters[1], "Priority");
 
+
             var bug = this.Repository.GetBug(bugTitle);
             if (bug == null)
             {
@@ -37,7 +38,8 @@ namespace TaskManagementSystem.Commands.Changing
 
             string oldPriority = bug.Priority.ToString();
 
-            bug.SetPriority(priority);
+            this.Repository.UpdateBugPriority(bug, priority);
+
 
             return $"Priority of bug '{bugTitle}' was changed from '{oldPriority}' to '{priority}'.";
 

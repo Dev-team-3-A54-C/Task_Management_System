@@ -32,12 +32,13 @@ namespace TaskManagementSystem.Commands.Changing
             var feedback = this.Repository.GetFeedback(feedbackTitle);
             if (feedback == null)
             {
-                throw new InvalidStoryException($"Feedback with title '{feedbackTitle}' does not exist.");
+                throw new InvalidFeedbackException($"Feedback with title '{feedbackTitle}' does not exist.");
             }
 
             int oldRating = feedback.Rating;
 
-            feedback.SetRating(newRating);
+            this.Repository.UpdateFeedbackRating(feedback, oldRating);
+            
 
             return $"Rating of feedback '{feedbackTitle}' was changed from '{oldRating}' to '{newRating}'.";
 

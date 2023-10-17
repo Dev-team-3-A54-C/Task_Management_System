@@ -37,7 +37,8 @@ namespace TaskManagementSystem.Commands.Changing
 
             string oldPriority = story.Priority.ToString();
 
-            story.SetPriority(priority);
+            this.Repository.UpdateStoryPriority(story, priority);
+
 
             return $"Priority of story '{storyTitle}' was changed from '{oldPriority}' to '{priority}'.";
 

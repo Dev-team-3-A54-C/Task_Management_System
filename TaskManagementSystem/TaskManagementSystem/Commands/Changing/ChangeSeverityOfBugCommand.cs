@@ -37,7 +37,8 @@ namespace TaskManagementSystem.Commands.Changing
 
             string oldSeverity = bug.Severity.ToString();
 
-            bug.SetSeverity(newSeverity);
+            this.Repository.UpdateBugSeverity(bug, newSeverity);
+
 
             return $"Priority of bug '{bugTitle}' was changed from '{oldSeverity}' to '{newSeverity}'.";
 

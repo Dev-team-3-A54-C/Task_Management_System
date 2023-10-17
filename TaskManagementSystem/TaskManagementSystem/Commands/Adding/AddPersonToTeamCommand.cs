@@ -41,7 +41,8 @@ namespace TaskManagementSystem.Commands.Adding
                 throw new InvalidTeamException($"Team with the name '{teamName}' does not exist.");
             }
 
-            team.AddMember(person);
+            this.Repository.AddMemberToTeam(person, team);
+
 
             return $"Person '{personName}' is now a member of team '{teamName}'.";
         }

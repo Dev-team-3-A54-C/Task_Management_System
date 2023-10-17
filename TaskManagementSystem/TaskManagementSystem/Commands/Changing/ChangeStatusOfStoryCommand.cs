@@ -38,38 +38,12 @@ namespace TaskManagementSystem.Commands.Changing
 
             string oldStatus = story.Status.ToString();
 
-            ExecuteHelper(story, newStatus);
+            this.Repository.UpdateStoryStatus(story, newStatus);
+
 
             return $"Status of story '{storyTitle}' was changed from '{oldStatus}' to '{newStatus}'.";
 
         }
-
-        private void ExecuteHelper(IStory story, StoryStatusType newStatus)
-        {
-            //If statusDiff is > 0 then we need to RevertStatus by abs statusDiff times
-            //else if statusDiff is < 0 then we need to AdvanceStatus by statusDiff times
-            //else (statusDiff == 0) that means the new status is the same as the old one
-
-            int statusDiff = (int)story.Status - (int)newStatus;
-
-            if (statusDiff > 0)
-            {
-                while (statusDiff != 0)
-                {
-                    story.ReverseStatus();
-                    statusDiff--;
-                }
-            }
-            else if (statusDiff < 0)
-            {
-                while (statusDiff != 0)
-                {
-                    story.AdvanceStatus();
-                    statusDiff++;
-                }
-            }
-
-            //Clarification needed when new Status is same as old status
-        }
+       
     }
 }

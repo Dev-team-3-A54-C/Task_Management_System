@@ -38,38 +38,11 @@ namespace TaskManagementSystem.Commands.Changing
 
             string oldStatus = bug.Status.ToString();
 
-            ExecuteHelper(bug, newStatus);
+            this.Repository.UpdateBugStatus(bug, newStatus);
 
             return $"Status of bug '{bugTitle}' was changed from '{oldStatus}' to '{newStatus}'.";
 
         }
-
-        private void ExecuteHelper(IBug bug, BugStatusType newStatus)
-        {
-            //If statusDiff is > 0 then we need to RevertStatus by abs statusDiff times
-            //else if statusDiff is < 0 then we need to AdvanceStatus by statusDiff times
-            //else (statusDiff == 0) that means the new status is the same as the old one
-
-            int statusDiff = (int)bug.Status - (int)newStatus;
-
-            if(statusDiff > 0)
-            {
-                while(statusDiff != 0)
-                {
-                    bug.ReverseStatus();
-                    statusDiff--;
-                }
-            }
-            else if(statusDiff < 0)
-            {
-                while (statusDiff != 0)
-                {
-                    bug.AdvanceStatus();
-                    statusDiff++;
-                }
-            }
-
-            //Clarification needed when new Status is same as old status
-        }
+        
     }
 }

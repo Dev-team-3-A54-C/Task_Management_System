@@ -43,7 +43,7 @@ namespace TaskManagementSystem.Commands.Adding
                 throw new InvalidTaskException($"Task with the title '{taskTitle}' does not exist.");
             }
 
-            task.AddComment(comment);
+            this.Repository.AddCommentToTask(comment, task);
 
             return $"Comment with author '{commentAuthor}' was added to task '{taskTitle}'.";
         }
