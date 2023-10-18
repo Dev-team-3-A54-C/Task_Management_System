@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using TaskManagementSystem.Core.Contracts;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models;
+using TaskManagementSystem.Models.Enums;
 
-namespace TaskManagementSystem.Commands.Listing
+namespace TaskManagementSystem.Commands.Listing.Stories
 {
     public class ListAllStoriesCommand : BaseCommand
     {
@@ -16,18 +17,15 @@ namespace TaskManagementSystem.Commands.Listing
         }
         public override string Execute()
         {
-            //todo
-            //Approach -
-            //1. Create a collection of stories only
-            //2. Sort them by title, than by priority, than by size
-            //3. Append them to the sb
+            //IList<IStory> stories = Repository.Tasks.Where(x => x.TaskType == TaskType.Story)
+            //    .Select(x => (IStory)x)
+            //    .OrderBy(x => x.Title)
+            //    .ThenBy(x => x.Priority)
+            //    .ThenBy(x => x.Size)
+            //    .ToList();
+            IList<IStory> stories = Repository.SortStories();
+
             StringBuilder sb = new StringBuilder();
-            IList<IStory> stories = this.Repository.Tasks.Where(x => x.GetType() == typeof(Story))
-                .Select(x => (IStory)x)
-                .OrderBy(x => x.Title)
-                .ThenBy(x => x.Priority)
-                .ThenBy(x => x.Size)
-                .ToList();
             foreach (var item in stories)
             {
                 sb.Append(item.ToString());

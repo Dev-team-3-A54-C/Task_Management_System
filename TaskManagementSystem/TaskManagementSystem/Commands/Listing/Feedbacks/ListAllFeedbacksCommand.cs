@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using TaskManagementSystem.Core.Contracts;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models;
+using TaskManagementSystem.Models.Enums;
 
-namespace TaskManagementSystem.Commands.Listing
+namespace TaskManagementSystem.Commands.Listing.Feedbacks
 {
     public class ListAllFeedbacksCommand : BaseCommand
     {
@@ -16,17 +17,16 @@ namespace TaskManagementSystem.Commands.Listing
         }
         public override string Execute()
         {
-            //todo
-            //Approach -
-            //1. Create a collection of feedbacks only
-            //2. Sort them by title, than by rating
-            //3. Append them to the sb
+            
+            //IList<IFeedback> feedbacks = Repository.Tasks.Where(x => x.TaskType == TaskType.Feedback)
+            //    .Select(x => (IFeedback)x)
+            //    .OrderBy(x => x.Title)
+            //    .ThenBy(x => x.Rating)
+            //    .ToList();
+
+            IList<IFeedback> feedbacks = Repository.SortFeedbacks();
+
             StringBuilder sb = new StringBuilder();
-            IList<IFeedback> feedbacks = this.Repository.Tasks.Where(x => x.GetType() == typeof(Feedback))
-                .Select(x => (IFeedback)x)
-                .OrderBy(x => x.Title)
-                .ThenBy(x => x.Rating)
-                .ToList();
             foreach (var item in feedbacks)
             {
                 sb.Append(item.ToString());

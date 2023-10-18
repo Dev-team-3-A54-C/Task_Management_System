@@ -47,13 +47,26 @@ namespace TaskManagementSystem.Core.Contracts
         void AddMemberToTeam(IMember member, ITeam team);
         void AddCommentToTask(IComment comment, ITask task);
 
-        //filters
-        IList<IBug> FilterBugsByStatus(IList<IBug> bugs, BugStatusType status);
-        IList<IStory> FilterStoriesByStatus(IList<IStory> stories, StoryStatusType status);
-        IList<IFeedback> FilterFeedbacksByStatus(IList<IFeedback> feedbacks, FeedbackStatusType status);
-        IList<IHasAssignee> FilterTasksByAssignee(IList<IHasAssignee> tasks, IMember assignee);
-        IList<ITask> FilterTasksByTitle(IList<ITask> tasks, string title);
+        //FILTERS
+
+        //bugs
+        IList<IBug> SortBugs();
+        IList<IBug> FilterBugsByStatus(BugStatusType status);
+        IList<IBug> FilterBugsByAssignee(IMember assignee);
+
+        //stories
+        IList<IStory> SortStories();
+        IList<IStory> FilterStoriesByStatus(StoryStatusType status);
+        IList<IStory> FilterStoriesByAssignee(IMember assignee);
+
+        //feedbacks
+        IList<IFeedback> SortFeedbacks();
+        IList<IFeedback> FilterFeedbacksByStatus(FeedbackStatusType status);
         
+        //tasks in general
+        IList<ITask> FilterTasksByTitle(string title);
+        IList<ITask> FilterTasksByAssignee(IMember assignee);
+
 
     }
 }

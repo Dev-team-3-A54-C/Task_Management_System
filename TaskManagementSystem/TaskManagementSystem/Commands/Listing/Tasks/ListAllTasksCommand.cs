@@ -7,7 +7,7 @@ using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models;
 using Task = TaskManagementSystem.Models.Task;
 
-namespace TaskManagementSystem.Commands.Listing
+namespace TaskManagementSystem.Commands.Listing.Tasks
 {
     public class ListAllTasksCommand : BaseCommand
     {
@@ -16,11 +16,11 @@ namespace TaskManagementSystem.Commands.Listing
         }
         public override string Execute()
         {
-            //todo
-            StringBuilder sb = new StringBuilder();
-            IList<ITask> tasks = this.Repository.Tasks.Where(x => x.GetType() == typeof(Task))
+            IList<ITask> tasks = Repository.Tasks
                 .OrderBy(x => x.Title)
                 .ToList();
+
+            StringBuilder sb = new StringBuilder();
             foreach (var item in tasks)
             {
                 sb.Append(item.ToString());

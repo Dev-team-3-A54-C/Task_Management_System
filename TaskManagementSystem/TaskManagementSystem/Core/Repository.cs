@@ -161,7 +161,7 @@ namespace TaskManagementSystem.Core
             return board;
         }
 
-        //new methods
+        //new methods for updating/adding
         public IBug UpdateBugPriority(IBug bug, PriorityType p)
         {
             bug.SetPriority(p);
@@ -263,26 +263,102 @@ namespace TaskManagementSystem.Core
             task.AddComment(comment);
         }
 
-        //filter methods
-        public IList<IBug> FilterBugsByStatus(IList<IBug> bugs, BugStatusType status)
+        //FILTER METHODS
+
+        //For bugs
+        public IList<IBug> SortBugs()
         {
-            return bugs.Where(x => x.Status == status).ToList();
+            return tasks.Where(x => x.TaskType == TaskType.Bug)
+                .Select(x => (IBug)x)
+                .OrderBy(x => x.Title)
+                .ThenBy(x => x.Priority)
+                .ThenBy(x => x.Severity)
+                .ToList();
         }
-        public IList<IStory> FilterStoriesByStatus(IList<IStory> stories, StoryStatusType status)
+        public IList<IBug> FilterBugsByStatus(BugStatusType status)
         {
-            return stories.Where(x => x.Status == status).ToList();
+            return SortBugs().Where(x => x.Status == status).ToList();
+            //return tasks.Where(x => x.TaskType == TaskType.Bug)
+            //    .Select(x => (IBug)x)
+            //    .Where(x => x.Status == status)
+            //    .OrderBy(x => x.Title)
+            //    .ThenBy(x => x.Priority)
+            //    .ThenBy(x => x.Severity)
+            //    .ToList();
         }
-        public IList<IFeedback> FilterFeedbacksByStatus(IList<IFeedback> feedbacks, FeedbackStatusType status)
+        public IList<IBug> FilterBugsByAssignee(IMember assignee)
         {
-            return feedbacks.Where(x => x.Status == status).ToList();
+            return SortBugs().Where(x => x.Assignee == assignee).ToList();
         }
-        public IList<IHasAssignee> FilterTasksByAssignee(IList<IHasAssignee> tasks, IMember assignee)
+
+        //For stories
+        public IList<IStory> SortStories()
         {
-            return tasks.Where(x => x.Assignee == assignee).ToList();
+            return tasks.Where(x => x.TaskType == TaskType.Story)
+                .Select(x => (IStory)x)
+                .OrderBy(x => x.Title)
+                .ThenBy(x => x.Priority)
+                .ThenBy(x => x.Size)
+                .ToList();
         }
-        public IList<ITask> FilterTasksByTitle(IList<ITask> tasks, string title)
+        public IList<IStory> FilterStoriesByStatus(StoryStatusType status)
         {
-            return tasks.Where(x => x.Title == title).ToList();
+            //return tasks.Where(x => x.TaskType == TaskType.Story)
+            //    .Select(x => (IStory)x)
+            //    .Where(x => x.Status == status)
+            //    .OrderBy(x => x.Title)
+            //    .ThenBy(x => x.Priority)
+            //    .ThenBy(x => x.Size)
+            //    .ToList();
+            return SortStories().Where(x => x.Status == status).ToList();
+        }
+        public IList<IStory> FilterStoriesByAssignee(IMember assignee)
+        {
+            //return tasks.Where(x => x.TaskType == TaskType.Story)
+            //    .OrderBy(x => x.Title)
+            //    .Select(x => (IStory)x)
+            //    .Where(x => x.Assignee == assignee)
+            //    .OrderBy(x => x.Priority)
+            //    .ThenBy(x => x.Size)
+            //    .ToList();
+            return SortStories().Where(x => x.Assignee == assignee).ToList();
+        }
+
+        //For feedbacks
+        public IList<IFeedback> SortFeedbacks()
+        {
+            return tasks.Where(x => x.TaskType == TaskType.Feedback)
+                .Select(x => (IFeedback)x)
+                .OrderBy(x => x.Title)
+                .ThenBy(x => x.Rating)
+                .ToList();
+        }
+        public IList<IFeedback> FilterFeedbacksByStatus(FeedbackStatusType status)
+        {
+            //return tasks.Where(x => x.TaskType == TaskType.Feedback)
+            //    .Select(x => (IFeedback)x)
+            //    .Where(x => x.Status == status)
+            //    .OrderBy(x => x.Title)
+            //    .ThenBy(x => x.Rating)
+            //    .ToList();
+            return SortFeedbacks().Where(x => x.Status == status).ToList();
+        }
+
+        //For tasks in general
+        public IList<ITask> FilterTasksByTitle(string title)
+        {
+            return tasks.Where(x => x.Title == title)
+                .OrderBy(x => x.Title)
+                .ToList();
+        }
+        public IList<ITask> FilterTasksByAssignee(IMember assignee)
+        {
+            return tasks.Where(x => (x.TaskType == TaskType.Bug || x.TaskType == TaskType.Story))
+                .OrderBy(x => x.Title)
+                .Select(x => (IHasAssignee)x)
+                .Where(x => x.Assignee == assignee)
+                .Select(x => (ITask)x)
+                .ToList();
         }
     }
 }

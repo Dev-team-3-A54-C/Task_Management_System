@@ -7,8 +7,9 @@ using TaskManagementSystem.Core.Contracts;
 using TaskManagementSystem.Exceptions;
 using TaskManagementSystem.Models;
 using TaskManagementSystem.Models.Contracts;
+using TaskManagementSystem.Models.Enums;
 
-namespace TaskManagementSystem.Commands.Listing
+namespace TaskManagementSystem.Commands.Listing.Tasks
 {
     public class ListAllTasksWithAssigneeCommand : BaseCommand
     {
@@ -17,25 +18,19 @@ namespace TaskManagementSystem.Commands.Listing
         public ListAllTasksWithAssigneeCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
-            
+
         }
         public override string Execute()
         {
-            if (this.CommandParameters.Count != ExpectedNumberOfArguments)
+            if (CommandParameters.Count != ExpectedNumberOfArguments)
             {
-                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}.");
+                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {CommandParameters.Count}.");
             }
 
-            
-            string name = this.CommandParameters[0];
+            string name = CommandParameters[0];
             IMember member = Repository.GetMember(name);
 
-            IList<IBug> tasksWithAssignee = this.Repository.Tasks
-                .Where(x => x.TaskType == TaskType.Story || x.TaskType == TaskType.Bug)
-                .Select(x => (IBug)x)
-                .Where(x => x.Assignee == member)
-                .OrderBy(x => x.Title)
-                .ToList();
+            IList<ITask> tasksWithAssignee = Repository.FilterTasksByAssignee(member);
 
             StringBuilder sb = new StringBuilder();
             foreach (var item in tasksWithAssignee)
