@@ -48,11 +48,11 @@ namespace TaskManagementSystem.Commands
 
             if (bug is not null)
             {
-                bug.UnassignMember(person);
+                bug.UnassignMember();
                 return $"{personName} was unassigned from bug '{taskName}.'";
             }
 
-            story.UnassignMember(person);
+            story.UnassignMember();
             return $"{personName} was unassigned from story '{taskName}'";
 
         }
