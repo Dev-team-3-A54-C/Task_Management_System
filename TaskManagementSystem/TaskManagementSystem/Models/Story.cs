@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,10 +88,23 @@ namespace TaskManagementSystem.Models
             base.AddEventToLog($"The rating of the feedback \"{Title}\" changed from \"{oldSize}\" to \"{Size}\"");
         }
 
-        public void AssignMember(Member member)
+        public void AssignMember(IMember member)
         {
             Assignee = member;
             base.AddEventToLog($"\"{member.Name}\" assigned to the the story \"{Title}\"");
+        }
+
+        public void UnassignMember()
+        {
+            if (Assignee != null)
+            {
+                base.AddEventToLog($"Unassigned member \"{Assignee.Name}\" from bug with name \"{base.Title}\"");
+                Assignee = null;
+            }
+            else
+            {
+                base.AddEventToLog($"Cannot unassign a member, because there is no assigned member");
+            }    
         }
 
         public override string ToString()
@@ -105,5 +119,7 @@ namespace TaskManagementSystem.Models
             
             return stringBuilder.ToString();
         }
+
+        
     }
 }

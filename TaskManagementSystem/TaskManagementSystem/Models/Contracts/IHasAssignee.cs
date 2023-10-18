@@ -9,6 +9,7 @@ namespace TaskManagementSystem.Models.Contracts
     public interface IHasAssignee
     {
         IMember Assignee { get; }
-        void AssignMember(Member member);
+        void AssignMember(IMember member);
+        void UnassignMember();
     }
 }
