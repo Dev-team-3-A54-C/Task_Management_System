@@ -27,7 +27,7 @@ namespace TaskManagementSystem.Models
 
         public PriorityType Priority { get; private set; }
 
-        public Member Assignee { get; private set; }
+        public IMember Assignee { get; private set; }
 
         public override void AdvanceStatus()
         {
