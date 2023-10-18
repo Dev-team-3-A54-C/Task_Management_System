@@ -28,14 +28,14 @@ namespace TaskManagementSystem.Commands.Showing
             }
 
 
-            if (team.Member.Count == 0)
+            if (team.Members.Count == 0)
             {
                 return $"There are no members in team '{teamName}'.";
             }
 
             StringBuilder output = new StringBuilder();
 
-            foreach (var member in team.Member)
+            foreach (var member in team.Members)
             {
                 output.Append(member.ToString());
             }
