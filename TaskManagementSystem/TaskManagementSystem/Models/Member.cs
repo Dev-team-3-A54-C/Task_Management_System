@@ -27,7 +27,7 @@ namespace TaskManagementSystem.Models
         public string Name
         {
             get => this.name;
-            protected set
+            private set
             {
                 ValidationHelpers.ValidationHelper.ValidateStringLength(value, NameMinValue, NameMaxValue, NameExceptionMessage);
                 this.name = value;

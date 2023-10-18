@@ -10,7 +10,7 @@ namespace TaskManagementSystem.Commands
 {
     public class UnassignPersonFromTaskCommand : BaseCommand
     {
-        public const int ExpectedNumberOfArguments = 2;
+        public const int ExpectedNumberOfArguments = 1;
 
         public UnassignPersonFromTaskCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
@@ -18,8 +18,7 @@ namespace TaskManagementSystem.Commands
         }
 
         //CommandParams should be:
-        //[0] = string, personName
-        //[1] = string, taskName
+        //[0] = string, taskName
         public override string Execute()
         {
             if (this.CommandParameters.Count != ExpectedNumberOfArguments)
@@ -27,15 +26,7 @@ namespace TaskManagementSystem.Commands
                 throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}.");
             }
 
-            string personName = this.CommandParameters[0];
-            string taskName = this.CommandParameters[1];
-
-            var person = this.Repository.GetMember(personName);
-            if (person == null)
-            {
-                throw new InvalidMemberException($"Member with name '{personName}' does not exist.");
-            }
-
+            string taskName = this.CommandParameters[0];
 
             //Should rewrite in future
 
@@ -48,12 +39,12 @@ namespace TaskManagementSystem.Commands
 
             if (bug is not null)
             {
-                bug.UnassignMember(person);
-                return $"{personName} was unassigned from bug '{taskName}.'";
+                bug.UnassignMember();
+                return $"Bug '{taskName}' no longer has an assignee.'";
             }
 
-            story.UnassignMember(person);
-            return $"{personName} was unassigned from story '{taskName}'";
+            story.UnassignMember();
+            return $"Story '{taskName}' no longer has an assignee.'";
 
         }
     }

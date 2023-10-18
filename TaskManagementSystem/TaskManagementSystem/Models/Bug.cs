@@ -33,7 +33,7 @@ namespace TaskManagementSystem.Models
 
         public PriorityType Priority { get; private set; }
 
-        public Member Assignee { get; private set; }
+        public IMember Assignee { get; private set; }
 
         public SeverityType Severity { get; private set; }
 
@@ -107,10 +107,23 @@ namespace TaskManagementSystem.Models
             }
         }
 
-        public void AssignMember(Member member)
+        public void AssignMember(IMember member)
         {
             Assignee = member;
             base.AddEventToLog($"\"{member.Name}\" assigned to the bug \"{Title}\"");
+        }
+
+        public void UnassignMember()
+        {
+            if (Assignee != null)
+            {
+                base.AddEventToLog($"Unassigned member \"{Assignee.Name}\" from story with name \"{base.Title}\"");
+                Assignee = null;
+            }
+            else
+            {
+                base.AddEventToLog($"Cannot unassign a member, because there is no assigned member");
+            }
         }
 
         public override string ToString()

@@ -28,7 +28,7 @@ namespace TaskManagementSystem.Models
         public string Name
         {
             get => this.name;
-            protected set
+            private set
             {
                 ValidationHelpers.ValidationHelper.ValidateStringLength(value, NameMinValue, NameMaxValue, NameExceptionMessage);
                 this.name = value;
@@ -53,6 +53,9 @@ namespace TaskManagementSystem.Models
 
         public void RemoveTask(ITask task)
         {
+            if (!tasks.Contains(task))
+                throw new ArgumentException($"No such item with title \"{task.Title}\" and id \"{task.Id}\" exists");
+
             tasks.Remove(task);
             AddEventToLog($"Task \"{task.Title}\" removed from board \"{Name}\"");
         }
