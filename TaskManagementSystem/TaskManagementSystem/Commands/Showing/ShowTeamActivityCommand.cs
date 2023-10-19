@@ -29,10 +29,10 @@ namespace TaskManagementSystem.Commands.Showing
 
             StringBuilder output = new StringBuilder();
 
-            //foreach (var record in team.EventLog)
-            //{
-            //    output.Append(record.ToString());
-            //}
+            foreach (var record in team.EventLog)
+            {
+                output.Append(record.ToString());
+            }
 
             return output.ToString();
         }
