@@ -66,5 +66,48 @@ namespace TaskManagementSystem.Tests.Models
             // Act & Assert
             Team sut = new Team(wrongName);
         }
+
+        [TestMethod]
+        public void Members_Should_ReturnsNewList()
+        {
+            // Arrange
+            string validName = new string('a', 5);
+            ITeam sutTeam = new Team(validName);
+
+            IMember member = new Member(validName);
+
+            // Act
+            sutTeam.AddMember(member);
+
+            // Assert
+            Assert.AreNotSame(sutTeam.Members, sutTeam.Members);
+        }
+
+        [TestMethod]
+        public void Boards_Should_ReturnsNewList()
+        {
+            // Arrange
+            string validName = new string('a', 5);
+            ITeam sutTeam = new Team(validName);
+
+            IBoard board = new Board(validName);
+
+            // Act
+            sutTeam.AddBoard(board);
+
+            // Assert
+            Assert.AreNotSame(sutTeam.Boards, sutTeam.Boards);
+        }
+
+        [TestMethod]
+        public void EventLog_Should_ReturnsNewList()
+        {
+            // Arrange
+            string validName = new string('a', 5);
+            ITeam sutTeam = new Team(validName);
+
+            // Act & Assert
+            Assert.AreNotSame(sutTeam.EventLog, sutTeam.EventLog);
+        }
     }
 }

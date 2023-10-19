@@ -22,5 +22,11 @@ namespace TaskManagementSystem.ValidationHelpers
             if (value <= 0)
                 throw new InvalidUserInputException(message);
         }
+
+        public static void ValidateIfStringIsNull(string value, string message)
+        {
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentNullException(message);
+        }
     }
 }

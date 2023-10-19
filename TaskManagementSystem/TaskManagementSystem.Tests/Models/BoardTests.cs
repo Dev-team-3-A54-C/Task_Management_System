@@ -17,7 +17,7 @@ namespace TaskManagementSystem.Tests.Models
         [TestInitialize]
         public void Initialize()
         {
-            
+
         }
 
         [TestMethod]
@@ -101,6 +101,44 @@ namespace TaskManagementSystem.Tests.Models
 
             // Assert
             Assert.AreNotSame(sutBoard.EventLog, sutBoard.EventLog);
+        }
+
+        [TestMethod]
+        public void RemoveTask_Should_RemoveTask_WhenParameterIsValid()
+        {
+            // Arrange
+            string validName = new string('a', 5);
+            IBoard sutBoard = new Board(validName);
+            bool expectedResult = false;
+
+            string validTitle = new string('a', 10);
+            string validDescription = new string('a', 10);
+            Feedback feedback = new Feedback(1, validTitle, validDescription, 1);
+
+            sutBoard.AddTask(feedback);
+
+            // Act
+            sutBoard.RemoveTask(feedback);
+
+            // Assert
+            bool isInList = sutBoard.Tasks.Contains(feedback);
+            Assert.AreEqual(expectedResult, isInList);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void RemoveTask_Should_Throw_WhenTaskIsNotInTheCollection()
+        {
+            // Arrange
+            string validName = new string('a', 5);
+            IBoard sutBoard = new Board(validName);
+
+            string validTitle = new string('a', 10);
+            string validDescription = new string('a', 10);
+            Feedback feedback = new Feedback(1, validTitle, validDescription, 1);
+
+            // Act & Assert
+            sutBoard.RemoveTask(feedback);
         }
     }
 }
