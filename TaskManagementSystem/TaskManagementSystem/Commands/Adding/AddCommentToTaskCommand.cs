@@ -32,16 +32,8 @@ namespace TaskManagementSystem.Commands.Adding
             string taskTitle = this.CommandParameters[2];
 
             var comment = this.Repository.CreateComment(commentMessage, commentAuthor);
-            if (comment == null)
-            {
-                throw new InvalidUserInputException($"The comment you tried to add had invalid message/author.");
-            }
 
             var task = this.Repository.GetTask(taskTitle);
-            if (task == null)
-            {
-                throw new InvalidTaskException($"Task with the title '{taskTitle}' does not exist.");
-            }
 
             this.Repository.AddCommentToTask(comment, task);
 

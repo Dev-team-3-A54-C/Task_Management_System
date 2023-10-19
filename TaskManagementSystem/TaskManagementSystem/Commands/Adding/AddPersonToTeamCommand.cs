@@ -30,16 +30,8 @@ namespace TaskManagementSystem.Commands.Adding
             string teamName = this.CommandParameters[1];
 
             var person = this.Repository.GetMember(personName);
-            if (person == null)
-            {
-                throw new InvalidMemberException($"Person with the name '{personName}' does not exist.");
-            }
 
             var team = this.Repository.GetTeam(teamName);
-            if (team == null)
-            {
-                throw new InvalidTeamException($"Team with the name '{teamName}' does not exist.");
-            }
 
             this.Repository.AddMemberToTeam(person, team);
 
