@@ -66,6 +66,10 @@ namespace TaskManagementSystem.Core
             }
             return team;
         }
+        public bool TeamExists(string teamName)
+        {
+            return teams.Any(x => x.Name == teamName);
+        }
         public IComment CreateComment(string content, string author)
         {
             return new Comment(content, author);

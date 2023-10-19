@@ -18,6 +18,7 @@ namespace TaskManagementSystem.Core.Contracts
 
         ITeam CreateTeam(string name);
         ITeam GetTeam(string teamName);
+        bool TeamExists(string teamName);
 
         IComment CreateComment(string content, string author);
 

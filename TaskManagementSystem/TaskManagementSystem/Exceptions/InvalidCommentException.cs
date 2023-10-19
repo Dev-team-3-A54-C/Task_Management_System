@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Exceptions
 {
-    internal class InvalidCommentException
+    public class InvalidCommentException
     {
     }
 }

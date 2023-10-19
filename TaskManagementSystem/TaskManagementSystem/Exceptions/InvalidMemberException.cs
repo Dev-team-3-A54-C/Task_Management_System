@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Exceptions
 {
-    internal class InvalidMemberException : ApplicationException
+    public class InvalidMemberException : ApplicationException
     {
         public InvalidMemberException(string message) : base(message)
         {

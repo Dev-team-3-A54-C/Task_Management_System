@@ -14,7 +14,7 @@ namespace TaskManagementSystem.Commands.Listing.Tasks
     public class ListAllTasksWithAssigneeCommand : BaseCommand
     {
         public const int ExpectedNumberOfArguments = 1;
-        //ToDo
+
         public ListAllTasksWithAssigneeCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {

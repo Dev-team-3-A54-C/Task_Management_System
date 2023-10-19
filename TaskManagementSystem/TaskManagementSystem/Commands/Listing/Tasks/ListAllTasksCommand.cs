@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using TaskManagementSystem.Core.Contracts;
 using TaskManagementSystem.Models.Contracts;
-using TaskManagementSystem.Models;
-using Task = TaskManagementSystem.Models.Task;
+
 
 namespace TaskManagementSystem.Commands.Listing.Tasks
 {
