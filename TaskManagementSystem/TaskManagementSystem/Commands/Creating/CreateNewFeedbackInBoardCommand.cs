@@ -39,10 +39,6 @@ namespace TaskManagementSystem.Commands.Creating
             var newFeedback = this.Repository.CreateFeedback(feedbackTitle,feedbackDescription, feedbackRating);
 
             var board = this.Repository.GetBoard(boardName);
-            if (board == null)
-            {
-                throw new InvalidBoardException($"Board with name '{boardName}' does not exist");
-            }
 
             board.AddTask(newFeedback);
 

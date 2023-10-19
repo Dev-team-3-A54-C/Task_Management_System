@@ -30,10 +30,6 @@ namespace TaskManagementSystem.Commands.Creating
             string boardName = this.CommandParameters[1];
 
             var team = this.Repository.GetTeam(teamName);
-            if(team == null)
-            {
-                throw new InvalidTeamException($"Team with the name '{teamName}' does not exist.");
-            }
 
             var board = this.Repository.CreateBoard(boardName);
 

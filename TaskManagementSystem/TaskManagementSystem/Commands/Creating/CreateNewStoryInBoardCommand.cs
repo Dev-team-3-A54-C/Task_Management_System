@@ -40,10 +40,6 @@ namespace TaskManagementSystem.Commands.Creating
             var newStory = this.Repository.CreateStory(storyTitle,storyDescription,storySize,storyPriority);
 
             var board = this.Repository.GetBoard(boardName);
-            if (board == null)
-            {
-                throw new InvalidBoardException($"Board with name '{boardName}' does not exist");
-            }
 
             board.AddTask(newStory);
 

@@ -43,10 +43,6 @@ namespace TaskManagementSystem.Commands.Creating
             var newBug = this.Repository.CreateBug(bugTitle, bugDescription, bugPriority, bugSeverity, stepsToReproduceBug);
 
             var board = this.Repository.GetBoard(boardName);
-            if(board == null)
-            {
-                throw new InvalidBoardException($"Board with name '{boardName}' does not exist");
-            }
 
             board.AddTask(newBug);
 
