@@ -10,5 +10,6 @@ namespace TaskManagementSystem.Models.Enums
     {
         string Description { get; }
         DateTime Time { get; }
+        string ToString();
     }
 }
