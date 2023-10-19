@@ -12,6 +12,15 @@ namespace TaskManagementSystem.Tests.Models
     [TestClass]
     public class TeamTests
     {
+        string validName;
+        ITeam sutTeam;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            validName = new string('a', 5);
+        }
+
         [TestMethod]
         public void Team_Should_ImplementITeamInterface()
         {
@@ -25,13 +34,11 @@ namespace TaskManagementSystem.Tests.Models
         public void Constructor_Should_CreateValidTeam_WhenParametersAreValid()
         {
             // Arrange
-            string validName = new string('a', 5);
-
             // Act
-            Team sut = new Team(validName);
+            sutTeam = new Team(validName);
 
             // Assert
-            Assert.AreEqual(validName, sut.Name);
+            Assert.AreEqual(validName, sutTeam.Name);
         }
 
         [TestMethod]
@@ -42,7 +49,7 @@ namespace TaskManagementSystem.Tests.Models
             string wrongName = "";
 
             // Act & Assert
-            Team sut = new Team(wrongName);
+            sutTeam = new Team(wrongName);
         }
 
         [TestMethod]
@@ -53,7 +60,7 @@ namespace TaskManagementSystem.Tests.Models
             string wrongName = new string('a', 4);
 
             // Act & Assert
-            Team sut = new Team(wrongName);
+            sutTeam = new Team(wrongName);
         }
 
         [TestMethod]
@@ -64,16 +71,14 @@ namespace TaskManagementSystem.Tests.Models
             string wrongName = new string('a', 16);
 
             // Act & Assert
-            Team sut = new Team(wrongName);
+            sutTeam = new Team(wrongName);
         }
 
         [TestMethod]
-        public void Members_Should_ReturnsNewList()
+        public void Members_Should_ReturnANewList()
         {
             // Arrange
-            string validName = new string('a', 5);
-            ITeam sutTeam = new Team(validName);
-
+            sutTeam = new Team(validName);
             IMember member = new Member(validName);
 
             // Act
@@ -84,12 +89,10 @@ namespace TaskManagementSystem.Tests.Models
         }
 
         [TestMethod]
-        public void Boards_Should_ReturnsNewList()
+        public void Boards_Should_ReturANewList()
         {
             // Arrange
-            string validName = new string('a', 5);
-            ITeam sutTeam = new Team(validName);
-
+            sutTeam = new Team(validName);
             IBoard board = new Board(validName);
 
             // Act
@@ -100,14 +103,68 @@ namespace TaskManagementSystem.Tests.Models
         }
 
         [TestMethod]
-        public void EventLog_Should_ReturnsNewList()
+        public void EventLog_Should_ReturnANewList()
         {
             // Arrange
-            string validName = new string('a', 5);
-            ITeam sutTeam = new Team(validName);
-
+            sutTeam = new Team(validName);
             // Act & Assert
             Assert.AreNotSame(sutTeam.EventLog, sutTeam.EventLog);
+        }
+
+        [TestMethod]
+        public void AddMember_Should_AddMemberToCollection_WhenParametersAreValid()
+        {
+            // Arrange
+            sutTeam = new Team(validName);
+            IMember member = new Member(validName);
+            int expectedCount = 1;
+
+            // Act
+            sutTeam.AddMember(member);
+
+            // Assert
+            Assert.AreEqual(expectedCount, sutTeam.Members.Count);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(DuplicateItemException))]
+        public void AddMember_Should_Throw_WhenMemberIsAlreadyInCollection()
+        {
+            // Arrange
+            sutTeam = new Team(validName);
+            IMember member = new Member(validName);
+            sutTeam.AddMember(member);
+
+            // Act & Assert
+            sutTeam.AddMember(member);
+        }
+
+        [TestMethod]
+        public void AddBoard_Should_AddMemberToCollection_WhenParametersAreValid()
+        {
+            // Arrange
+            sutTeam = new Team(validName);
+            IBoard board = new Board(validName);
+            int expectedCount = 1;
+
+            // Act
+            sutTeam.AddBoard(board);
+
+            // Assert
+            Assert.AreEqual(expectedCount, sutTeam.Boards.Count);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(DuplicateItemException))]
+        public void AddBoard_Should_Throw_WhenBoardIsAlreadyInCollection()
+        {
+            // Arrange
+            sutTeam = new Team(validName);
+            IBoard board = new Board(validName);
+            sutTeam.AddBoard(board);
+
+            // Act & Assert
+            sutTeam.AddBoard(board);
         }
     }
 }
