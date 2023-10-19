@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Core.Contracts;
 using TaskManagementSystem.Exceptions;
+using TaskManagementSystem.Models.Contracts;
+using TaskManagementSystem.Models;
 
 namespace TaskManagementSystem.Commands
 {
@@ -31,28 +33,39 @@ namespace TaskManagementSystem.Commands
             string taskName = this.CommandParameters[1];
 
             var person = this.Repository.GetMember(personName);
-            if (person == null)
+
+            var task = this.Repository.GetTask(taskName);
+
+            var type = task.GetType();
+            var isAssignable = typeof(IHasAssignee).IsAssignableFrom(type);
+
+            if(isAssignable)
             {
-                throw new InvalidMemberException($"Member with name '{personName}' does not exist.");
+                throw new InvalidUserInputException($"There is no assignable task with name '{taskName}'.");
             }
+
+            //not sure if casting will throw exception when impossible
+
+            //var bug = (IBug)task;
+            //var story = (IStory)task;
 
 
             //Should rewrite in future
 
-            var bug = this.Repository.GetBug(taskName);
-            var story = this.Repository.GetStory(taskName);
-            if (bug == null && story == null)
-            {
-                throw new InvalidUserInputException($"Taks, that can have an assignee, with the name '{taskName}' does not exist.");
-            }
+            //var bug = this.Repository.GetBug(taskName);
+            //var story = this.Repository.GetStory(taskName);
+            //if (bug == null && story == null)
+            //{
+            //    throw new InvalidUserInputException($"Taks, that can have an assignee, with the name '{taskName}' does not exist.");
+            //}
 
-            if(bug is not null)
-            {
-                bug.AssignMember(person);
-                return $"{personName} was assigned to bug '{taskName}.'";
-            }
+            //if(bug is not null)
+            //{
+            //    bug.AssignMember(person);
+            //    return $"{personName} was assigned to bug '{taskName}.'";
+            //}
 
-            story.AssignMember(person);
+            //story.AssignMember(person);
             return $"{personName} was assigned to story '{taskName}'";
 
         }
