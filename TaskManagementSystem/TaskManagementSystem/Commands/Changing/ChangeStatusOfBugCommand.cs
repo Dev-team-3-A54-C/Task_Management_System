@@ -31,10 +31,6 @@ namespace TaskManagementSystem.Commands.Changing
             BugStatusType newStatus = base.ParseBugStatusParameter(this.CommandParameters[1], "Status");
 
             var bug = this.Repository.GetBug(bugTitle);
-            if (bug == null)
-            {
-                throw new InvalidBugException($"Bug with title '{bugTitle}' does not exist.");
-            }
 
             string oldStatus = bug.Status.ToString();
 

@@ -30,10 +30,6 @@ namespace TaskManagementSystem.Commands.Changing
             SeverityType newSeverity = base.ParseSeverityParameter(this.CommandParameters[1], "Severity");
 
             var bug = this.Repository.GetBug(bugTitle);
-            if (bug == null)
-            {
-                throw new InvalidBugException($"Bug with title '{bugTitle}' does not exist.");
-            }
 
             string oldSeverity = bug.Severity.ToString();
 

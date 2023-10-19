@@ -30,10 +30,6 @@ namespace TaskManagementSystem.Commands.Changing
             SizeType newSize = base.ParseSizeParameter(this.CommandParameters[1], "Size");
 
             var story = this.Repository.GetStory(storyTitle);
-            if (story == null)
-            {
-                throw new InvalidStoryException($"Story with title '{storyTitle}' does not exist.");
-            }
 
             string oldSize = story.Size.ToString();
 

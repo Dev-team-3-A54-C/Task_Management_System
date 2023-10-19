@@ -30,10 +30,6 @@ namespace TaskManagementSystem.Commands.Changing
             PriorityType priority = base.ParsePriorityParameter(this.CommandParameters[1], "Priority");
 
             var story = this.Repository.GetStory(storyTitle);
-            if (story == null)
-            {
-                throw new InvalidStoryException($"Story with title '{storyTitle}' does not exist.");
-            }
 
             string oldPriority = story.Priority.ToString();
 

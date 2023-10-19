@@ -31,10 +31,6 @@ namespace TaskManagementSystem.Commands.Changing
 
 
             var bug = this.Repository.GetBug(bugTitle);
-            if (bug == null)
-            {
-                throw new InvalidBugException($"Bug with title '{bugTitle}' does not exist.");
-            }
 
             string oldPriority = bug.Priority.ToString();
 

@@ -30,10 +30,6 @@ namespace TaskManagementSystem.Commands.Changing
             int newRating = base.ParseIntParameter(this.CommandParameters[1], "Rating");
 
             var feedback = this.Repository.GetFeedback(feedbackTitle);
-            if (feedback == null)
-            {
-                throw new InvalidFeedbackException($"Feedback with title '{feedbackTitle}' does not exist.");
-            }
 
             int oldRating = feedback.Rating;
 

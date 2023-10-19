@@ -31,10 +31,6 @@ namespace TaskManagementSystem.Commands.Changing
             StoryStatusType newStatus = base.ParseStoryStatusParameter(this.CommandParameters[1], "Status");
 
             var story = this.Repository.GetStory(storyTitle);
-            if (story == null)
-            {
-                throw new InvalidStoryException($"Story with title '{storyTitle}' does not exist.");
-            }
 
             string oldStatus = story.Status.ToString();
 

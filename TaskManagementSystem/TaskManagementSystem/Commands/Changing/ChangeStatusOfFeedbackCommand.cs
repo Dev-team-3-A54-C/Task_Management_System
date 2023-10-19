@@ -31,10 +31,6 @@ namespace TaskManagementSystem.Commands.Changing
             FeedbackStatusType newStatus = base.ParseFeedbackStatusParameter(this.CommandParameters[1], "Status");
 
             var feedback = this.Repository.GetFeedback(feedbackTitle);
-            if (feedback == null)
-            {
-                throw new InvalidFeedbackException($"Feedback with title '{feedbackTitle}' does not exist.");
-            }
 
             string oldStatus = feedback.Status.ToString();
 
