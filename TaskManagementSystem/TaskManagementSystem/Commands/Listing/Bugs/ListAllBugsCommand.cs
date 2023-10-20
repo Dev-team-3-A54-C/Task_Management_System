@@ -22,7 +22,7 @@ namespace TaskManagementSystem.Commands.Listing.Bugs
             StringBuilder sb = new StringBuilder();
             foreach (var item in bugs)
             {
-                sb.Append(item.ToString());
+                sb.AppendLine(item.ToString());
             }
             return sb.ToString();
         }

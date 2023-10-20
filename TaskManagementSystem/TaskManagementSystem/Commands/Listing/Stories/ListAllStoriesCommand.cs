@@ -28,7 +28,7 @@ namespace TaskManagementSystem.Commands.Listing.Stories
             StringBuilder sb = new StringBuilder();
             foreach (var item in stories)
             {
-                sb.Append(item.ToString());
+                sb.AppendLine(item.ToString());
             }
             return sb.ToString();
         }

@@ -32,7 +32,7 @@ namespace TaskManagementSystem.Commands.Listing.Feedbacks
             StringBuilder sb = new StringBuilder();
             foreach (var item in feedbacks)
             {
-                sb.Append(item.ToString());
+                sb.AppendLine(item.ToString());
             }
             return sb.ToString();
         }

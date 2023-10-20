@@ -30,7 +30,7 @@ namespace TaskManagementSystem.Commands.Listing.Tasks
             StringBuilder sb = new StringBuilder();
             foreach (ITask task in tasks)
             {
-                sb.Append(task.ToString());
+                sb.AppendLine(task.ToString());
             }
 
             return sb.ToString();
