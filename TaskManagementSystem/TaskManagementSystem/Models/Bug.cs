@@ -143,7 +143,7 @@ namespace TaskManagementSystem.Models
             stringBuilder.AppendLine($"     Status: {Status}");
 
             if (Assignee != null)
-                stringBuilder.AppendLine($"     Assignee: {Assignee}");
+                stringBuilder.AppendLine($"     Assignee: {Assignee.Name}");
             else
                 stringBuilder.AppendLine("     Assignee: noAssignee");
 
