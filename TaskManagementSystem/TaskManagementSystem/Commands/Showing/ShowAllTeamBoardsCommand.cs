@@ -22,10 +22,6 @@ namespace TaskManagementSystem.Commands.Showing
             string teamName = CommandParameters[0];
 
             var team = this.Repository.GetTeam(teamName);
-            if (team == null)
-            {
-                throw new InvalidTeamException($"Team with the name '{teamName}' does not exist.");
-            }
 
 
             if (team.Boards.Count == 0)

@@ -16,8 +16,8 @@ namespace TaskManagementSystem.Commands.Creating
         }
 
         //CommandParams should be:
-        //[0] = string, boardName
-        //[1] = string, teamName
+        //[0] = string, teamName
+        //[1] = string, boardName
 
         public override string Execute()
         {
