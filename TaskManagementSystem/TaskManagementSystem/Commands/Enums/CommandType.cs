@@ -34,10 +34,16 @@ namespace TaskManagementSystem.Commands.Enums
         UnassignPersonFromTask,
         AddCommentToTask,
         ListAllTasks,
-        ListAllBugs,
-        ListAllStories,
-        ListAllFeedbacks,
         ListAllTasksWithAssignee,
+        ListAllTasksWithTitle,
+        ListAllBugs,
+        ListAllBugsWithAssignee,
+        ListAllBugsWithStatus,
+        ListAllStories,
+        ListAllStoriesWithAssignee,
+        ListAllStoriesWithStatus,
+        ListAllFeedbacks,
+        ListAllFeedbacksWithStatus,
         Help
     }
 }
