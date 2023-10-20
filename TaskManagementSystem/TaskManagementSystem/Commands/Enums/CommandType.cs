@@ -37,6 +37,7 @@ namespace TaskManagementSystem.Commands.Enums
         ListAllBugs,
         ListAllStories,
         ListAllFeedbacks,
-        ListAllTasksWithAssignee
+        ListAllTasksWithAssignee,
+        Help
     }
 }
