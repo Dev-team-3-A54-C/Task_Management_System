@@ -14,10 +14,20 @@ namespace TaskManagementSystem.Tests.Models
     [TestClass]
     public class BoardTests
     {
+
+        string validName;
+        Board sutBoard;
+        string validTitle;
+        string validDescription;
+        Feedback feedback;
+
         [TestInitialize]
         public void Initialize()
         {
-
+            validName = new string('a', 5);
+            validTitle = new string('a', 10);
+            validDescription = new string('a', 10);
+            feedback = new Feedback(1, validTitle, validDescription, 1);
         }
 
         [TestMethod]
@@ -33,13 +43,11 @@ namespace TaskManagementSystem.Tests.Models
         public void Constructor_Should_CreateValidBoard_WhenParametersAreValid()
         {
             // Arrange
-            string validName = new string('a', 5);
-
             // Act
-            Board sut = new Board(validName);
+            sutBoard = new Board(validName);
 
             // Assert
-            Assert.AreEqual(validName, sut.Name);
+            Assert.AreEqual(validName, sutBoard.Name);
         }
 
         [TestMethod]
@@ -50,7 +58,7 @@ namespace TaskManagementSystem.Tests.Models
             string wrongName = "";
 
             // Act & Assert
-            Board sut = new Board(wrongName);
+            sutBoard = new Board(wrongName);
         }
 
         [TestMethod]
@@ -61,7 +69,7 @@ namespace TaskManagementSystem.Tests.Models
             string wrongName = new string('a', 4);
 
             // Act & Assert
-            Board sut = new Board(wrongName);
+            sutBoard = new Board(wrongName);
         }
 
         [TestMethod]
@@ -72,19 +80,14 @@ namespace TaskManagementSystem.Tests.Models
             string wrongName = new string('a', 11);
 
             // Act & Assert
-            Board sut = new Board(wrongName);
+            sutBoard = new Board(wrongName);
         }
 
         [TestMethod]
         public void Tasks_Should_ReturnsNewList()
         {
             // Arrange
-            string validName = new string('a', 5);
-            IBoard sutBoard = new Board(validName);
-
-            string validTitle = new string('a', 10);
-            string validDescription = new string('a', 10);
-            Feedback feedback = new Feedback(1, validTitle, validDescription, 1);
+            sutBoard = new Board(validName);
 
             // Act
             sutBoard.AddTask(feedback);
@@ -97,25 +100,45 @@ namespace TaskManagementSystem.Tests.Models
         public void EventLog_Should_ReturnsNewList()
         {
             // Arrange & Act
-            IBoard sutBoard = new Board("TestBoard");
+            sutBoard = new Board("TestBoard");
 
             // Assert
             Assert.AreNotSame(sutBoard.EventLog, sutBoard.EventLog);
         }
 
         [TestMethod]
+        public void AddTask_Should_AddTask_WhenParameterIsValid()
+        {
+            // Arrange
+            sutBoard = new Board(validName);
+            int expectedCount = 1;
+
+            // Act
+            sutBoard.AddTask(feedback);
+
+            // Assert
+            Assert.AreEqual(expectedCount, sutBoard.Tasks.Count);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(DuplicateItemException))]
+        public void AddTask_Should_Throw_WhenTaskIsInTheCollection()
+        {
+            // Arrange
+            sutBoard = new Board(validName);
+            sutBoard.AddTask(feedback);
+
+            // Act & Assert
+            sutBoard.AddTask(feedback);
+        }
+
+        [TestMethod]
         public void RemoveTask_Should_RemoveTask_WhenParameterIsValid()
         {
             // Arrange
-            string validName = new string('a', 5);
-            IBoard sutBoard = new Board(validName);
-            bool expectedResult = false;
-
-            string validTitle = new string('a', 10);
-            string validDescription = new string('a', 10);
-            Feedback feedback = new Feedback(1, validTitle, validDescription, 1);
-
+            sutBoard = new Board(validName);
             sutBoard.AddTask(feedback);
+            bool expectedResult = false;
 
             // Act
             sutBoard.RemoveTask(feedback);
@@ -130,12 +153,7 @@ namespace TaskManagementSystem.Tests.Models
         public void RemoveTask_Should_Throw_WhenTaskIsNotInTheCollection()
         {
             // Arrange
-            string validName = new string('a', 5);
-            IBoard sutBoard = new Board(validName);
-
-            string validTitle = new string('a', 10);
-            string validDescription = new string('a', 10);
-            Feedback feedback = new Feedback(1, validTitle, validDescription, 1);
+            sutBoard = new Board(validName);
 
             // Act & Assert
             sutBoard.RemoveTask(feedback);
