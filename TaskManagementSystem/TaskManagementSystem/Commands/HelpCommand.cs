@@ -21,10 +21,11 @@ namespace TaskManagementSystem.Commands
             StringBuilder commandsString = new StringBuilder();
 
             commandsString.AppendLine();
+            commandsString = commandsString.AppendLine("These are the available commands in the application:");
 
             for (int i=0; i < (int)CommandType.Help; i++)
             {
-                commandsString.AppendLine($"{(CommandType)i}Command,");
+                commandsString.AppendLine($"{(CommandType)i},");
             }
             
             commandsString.AppendLine();
