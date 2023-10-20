@@ -27,7 +27,7 @@ namespace TaskManagementSystem.Commands.Showing
 
             foreach (var record in person.EventLog)
             {
-                output.Append(record.ToString());
+                output.AppendLine(record.ToString());
             }
 
             return output.ToString();
