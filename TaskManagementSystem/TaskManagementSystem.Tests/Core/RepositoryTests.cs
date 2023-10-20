@@ -42,7 +42,7 @@ namespace TaskManagementSystem.Tests.Core
         public void CreateBug_Should_AddNewBugToCollection()
         {
             //Act
-            repository.CreateBug("Problem2", "Cannot function",
+            repository.CreateBug("Problem2Title", "Cannot function",
                 PriorityType.Medium, SeverityType.Minor, new List<string> { "first", "second" });
             //Assert
             Assert.AreEqual(1, repository.Tasks.Count);

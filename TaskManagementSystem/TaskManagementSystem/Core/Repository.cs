@@ -14,10 +14,6 @@ namespace TaskManagementSystem.Core
 {
     public class Repository : IRepository
     {
-        //todo
-        //add validation in methods
-        //add new methods and filters
-        //
         private readonly IList<ITeam> teams = new List<ITeam>();
         private readonly IList<IMember> members = new List<IMember>();
         private readonly IList<IBoard> boards = new List<IBoard>();
