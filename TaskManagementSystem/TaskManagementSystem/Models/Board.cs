@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManagementSystem.Exceptions;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models.Enums;
 
@@ -47,6 +49,9 @@ namespace TaskManagementSystem.Models
 
         public void AddTask(ITask task)
         {
+            if (tasks.Contains(task))
+                throw new DuplicateItemException($"Task with name \"{task.Title}\" already exist in the board \"{Name}\"");
+
             tasks.Add(task);
             AddEventToLog($"Task \"{task.Title}\" added to board \"{Name}\"");
         }
@@ -54,7 +59,7 @@ namespace TaskManagementSystem.Models
         public void RemoveTask(ITask task)
         {
             if (!tasks.Contains(task))
-                throw new ArgumentException($"No such item with title \"{task.Title}\" and id \"{task.Id}\" exists");
+                throw new ArgumentException($"No such item with title \"{task.Title}\" and id \"{task.Id}\" exists inside board \"{Name}\"");
 
             tasks.Remove(task);
             AddEventToLog($"Task \"{task.Title}\" removed from board \"{Name}\"");

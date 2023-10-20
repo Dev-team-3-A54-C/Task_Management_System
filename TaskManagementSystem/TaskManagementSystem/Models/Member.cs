@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManagementSystem.Exceptions;
 using TaskManagementSystem.Models.Contracts;
 using TaskManagementSystem.Models.Enums;
 
@@ -46,12 +47,18 @@ namespace TaskManagementSystem.Models
 
         public void AddTask(ITask task)
         {
+            if (tasks.Contains(task))
+                throw new DuplicateItemException($"Task with name \"{task.Title}\" already assigned to the member \"{Name}\"");
+
             tasks.Add(task);
             AddEventToLog($"Task \"{task.Title}\" added to {Name}'s list");
         }
 
         public void RemoveTask(ITask task)
         {
+            if (!tasks.Contains(task))
+                throw new ArgumentException($"No such item with title \"{task.Title}\" and id \"{task.Id}\" is assigned for member \"{Name}\"");
+
             tasks.Remove(task);
             AddEventToLog($"Task \"{task.Title}\" remvoed from {Name}'s list");
         }
