@@ -116,7 +116,7 @@ namespace TaskManagementSystem.Models
             else
                 stringBuilder.AppendLine("      No Comments");
 
-            return stringBuilder.ToString();
+            return stringBuilder.ToString().TrimEnd();
         }
 
         public override string ToString()

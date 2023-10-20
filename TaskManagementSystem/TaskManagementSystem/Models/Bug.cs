@@ -141,7 +141,7 @@ namespace TaskManagementSystem.Models
             stringBuilder.AppendLine($"     Priority: {Priority}");
             stringBuilder.AppendLine($"     Severity: {Severity}");
             stringBuilder.AppendLine($"     Status: {Status}");
-            stringBuilder.AppendLine(ListComments());
+            stringBuilder.Append(ListComments());
 
             return stringBuilder.ToString();
         }
