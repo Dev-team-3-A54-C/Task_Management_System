@@ -129,7 +129,7 @@ namespace TaskManagementSystem.Models
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.Append(base.ToString());
             stringBuilder.AppendLine($"     Steps to Reproduce:");
 
             int count = 1;
