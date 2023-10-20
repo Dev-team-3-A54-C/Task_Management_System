@@ -29,18 +29,15 @@ namespace TaskManagementSystem.Commands
 
             string taskName = this.CommandParameters[0];
 
-            //Should rewrite in future
             var task = this.Repository.GetTask(taskName);
 
-            var type = task.GetType();
-            var isAssignable = typeof(IHasAssignee).IsAssignableFrom(type);
+            var assignableTask = this.Repository.Tasks.OfType<IHasAssignee>().FirstOrDefault(t => t.Title == taskName);            
 
-            if (isAssignable)
+            if (assignableTask == null)
             {
                 throw new InvalidUserInputException($"There is no assignable task with name '{taskName}'.");
             }
-            //Not sure if it works right, needs testing
-            var assignableTask = (IHasAssignee)task;
+
             assignableTask.UnassignMember();
 
             return $"Task (bug/story) '{taskName}' no longer has an assignee.'";

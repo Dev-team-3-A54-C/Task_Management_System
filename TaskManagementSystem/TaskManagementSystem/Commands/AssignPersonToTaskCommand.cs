@@ -34,18 +34,14 @@ namespace TaskManagementSystem.Commands
 
             var person = this.Repository.GetMember(personName);
 
-            var task = this.Repository.GetTask(taskName);
+            var assignableTask = this.Repository.Tasks.OfType<IHasAssignee>().FirstOrDefault(t => t.Title == taskName);
+            
 
-            var type = task.GetType();
-            var isAssignable = typeof(IHasAssignee).IsAssignableFrom(type);
-
-            if(isAssignable)
+            if(assignableTask == null)
             {
                 throw new InvalidUserInputException($"There is no assignable task with name '{taskName}'.");
             }
 
-            //Not sure if it works properly, needs testing
-            var assignableTask = (IHasAssignee)task;
             assignableTask.AssignMember(person);
 
             
