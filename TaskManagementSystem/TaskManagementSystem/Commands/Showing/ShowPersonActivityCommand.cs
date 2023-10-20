@@ -22,10 +22,6 @@ namespace TaskManagementSystem.Commands.Showing
             string personName = CommandParameters[0];
 
             var person = this.Repository.GetMember(personName);
-            if (person == null)
-            {
-                throw new InvalidMemberException($"Person with the name '{personName}' does not exist.");
-            }
 
             StringBuilder output = new StringBuilder();
 

@@ -22,10 +22,6 @@ namespace TaskManagementSystem.Commands.Showing
             string boardName = CommandParameters[0];
 
             var board = this.Repository.GetBoard(boardName);
-            if (board == null)
-            {
-                throw new InvalidBoardException($"Board with the name '{boardName}' does not exist.");
-            }
 
             StringBuilder output = new StringBuilder();
 
