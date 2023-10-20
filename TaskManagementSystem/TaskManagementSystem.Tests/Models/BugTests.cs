@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Tests.Models
 {
-    internal class TaskTests
+    [TestClass]
+    public class TaskTests
     {
+        [TestMethod]
+        public void Constructor_Should_Create_Instance_When_Input_Is_Valid()
+        {
+
+        }
     }
 }
