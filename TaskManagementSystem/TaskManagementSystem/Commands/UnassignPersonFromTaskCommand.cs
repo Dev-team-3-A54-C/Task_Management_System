@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Core.Contracts;
 using TaskManagementSystem.Exceptions;
+using TaskManagementSystem.Models.Contracts;
 
 namespace TaskManagementSystem.Commands
 {
@@ -29,22 +30,20 @@ namespace TaskManagementSystem.Commands
             string taskName = this.CommandParameters[0];
 
             //Should rewrite in future
+            var task = this.Repository.GetTask(taskName);
 
-            var bug = this.Repository.GetBug(taskName);
-            var story = this.Repository.GetStory(taskName);
-            if (bug == null && story == null)
+            var type = task.GetType();
+            var isAssignable = typeof(IHasAssignee).IsAssignableFrom(type);
+
+            if (isAssignable)
             {
-                throw new InvalidUserInputException($"Taks, that can have an assignee, with the name '{taskName}' does not exist.");
+                throw new InvalidUserInputException($"There is no assignable task with name '{taskName}'.");
             }
+            //Not sure if it works right, needs testing
+            var assignableTask = (IHasAssignee)task;
+            assignableTask.UnassignMember();
 
-            if (bug is not null)
-            {
-                bug.UnassignMember();
-                return $"Bug '{taskName}' no longer has an assignee.'";
-            }
-
-            story.UnassignMember();
-            return $"Story '{taskName}' no longer has an assignee.'";
+            return $"Task (bug/story) '{taskName}' no longer has an assignee.'";
 
         }
     }

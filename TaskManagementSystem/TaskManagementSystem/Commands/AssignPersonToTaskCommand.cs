@@ -44,29 +44,12 @@ namespace TaskManagementSystem.Commands
                 throw new InvalidUserInputException($"There is no assignable task with name '{taskName}'.");
             }
 
-            //not sure if casting will throw exception when impossible
+            //Not sure if it works properly, needs testing
+            var assignableTask = (IHasAssignee)task;
+            assignableTask.AssignMember(person);
 
-            //var bug = (IBug)task;
-            //var story = (IStory)task;
-
-
-            //Should rewrite in future
-
-            //var bug = this.Repository.GetBug(taskName);
-            //var story = this.Repository.GetStory(taskName);
-            //if (bug == null && story == null)
-            //{
-            //    throw new InvalidUserInputException($"Taks, that can have an assignee, with the name '{taskName}' does not exist.");
-            //}
-
-            //if(bug is not null)
-            //{
-            //    bug.AssignMember(person);
-            //    return $"{personName} was assigned to bug '{taskName}.'";
-            //}
-
-            //story.AssignMember(person);
-            return $"{personName} was assigned to story '{taskName}'";
+            
+            return $"{personName} was assigned to task (bug/story) '{taskName}'";
 
         }
     }
