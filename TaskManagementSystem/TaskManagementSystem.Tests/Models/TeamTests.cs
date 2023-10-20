@@ -140,7 +140,7 @@ namespace TaskManagementSystem.Tests.Models
         }
 
         [TestMethod]
-        public void AddBoard_Should_AddMemberToCollection_WhenParametersAreValid()
+        public void AddBoard_Should_AddBoardToCollection_WhenParametersAreValid()
         {
             // Arrange
             sutTeam = new Team(validName);

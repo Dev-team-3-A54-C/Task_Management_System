@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.Contracts
 {
-    public interface IHasAssignee
+    public interface IHasAssignee : ITask
     {
         IMember Assignee { get; }
         void AssignMember(IMember member);
