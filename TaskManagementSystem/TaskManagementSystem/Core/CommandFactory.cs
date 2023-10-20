@@ -71,14 +71,26 @@ namespace TaskManagementSystem.Core
                     return new CreateNewTeamCommand(commandParameters, repository);
                 case CommandType.ListAllBugs:
                     return new ListAllBugsCommand(repository);
+                case CommandType.ListAllBugsWithAssignee:
+                    return new ListAllBugsWithAssignee(commandParameters, repository);
+                case CommandType.ListAllBugsWithStatus:
+                    return new ListAllBugsWithStatus(commandParameters, repository);
                 case CommandType.ListAllFeedbacks:
                     return new ListAllFeedbacksCommand(repository);
+                case CommandType.ListAllFeedbacksWithStatus:
+                    return new ListAllFeedbacksWithStatus(commandParameters, repository);
                 case CommandType.ListAllStories:
                     return new ListAllStoriesCommand(repository);
+                case CommandType.ListAllStoriesWithAssignee:
+                    return new ListAllStoriesWithAssignee(commandParameters, repository);
+                case CommandType.ListAllStoriesWithStatus:
+                    return new ListAllStoriesWithStatus(commandParameters, repository);
                 case CommandType.ListAllTasks:
                     return new ListAllTasksCommand(repository);
                 case CommandType.ListAllTasksWithAssignee:
                     return new ListAllTasksWithAssigneeCommand(commandParameters, repository);
+                case CommandType.ListAllTasksWithTitle:
+                    return new ListAllTasksWithTitle(commandParameters, repository);
                 case CommandType.AssignPersonToTask:
                     return new AssignPersonToTaskCommand(commandParameters, repository);
                 case CommandType.UnassignPersonFromTask:
