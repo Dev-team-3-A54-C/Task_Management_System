@@ -88,5 +88,32 @@ namespace TaskManagementSystem.Tests.Models
             //Assert
             Assert.IsTrue(sut.Size == SizeType.Small);
         }
+        [TestMethod]
+        public void AssignMember_Should_SetAssignee()
+        {
+            //Arrange
+            string name = "TestMember";
+            Story sut = new Story(1, "StoryTitle", "NewDescription", SizeType.Large, PriorityType.Low);
+            //Act
+            sut.AssignMember(new Member(name));
+
+            //Assert
+            Assert.AreEqual(sut.Assignee.Name, name);
+        }
+
+        [TestMethod]
+        public void UnassignMember_Should_SetAssigneeToNull()
+        {
+            //Arrange
+            Story sut = new Story(1, "StoryTitle", "NewDescription", SizeType.Large, PriorityType.Low);
+            string memberName = new string('a', 10);
+            sut.AssignMember(new Member(memberName));
+
+            //Act
+            sut.UnassignMember();
+
+            //Assert
+            Assert.IsNull(sut.Assignee);
+        }
     }
 }

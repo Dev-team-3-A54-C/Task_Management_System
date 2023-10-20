@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using TaskManagementSystem.Commands;
 using TaskManagementSystem.Commands.Adding;
 using TaskManagementSystem.Commands.Changing;
 using TaskManagementSystem.Commands.Contracts;
@@ -12,6 +13,7 @@ using TaskManagementSystem.Commands.Listing.Bugs;
 using TaskManagementSystem.Commands.Listing.Feedbacks;
 using TaskManagementSystem.Commands.Listing.Stories;
 using TaskManagementSystem.Commands.Listing.Tasks;
+using TaskManagementSystem.Commands.Showing;
 using TaskManagementSystem.Core.Contracts;
 using TaskManagementSystem.Exceptions;
 
@@ -77,24 +79,26 @@ namespace TaskManagementSystem.Core
                     return new ListAllTasksCommand(repository);
                 case CommandType.ListAllTasksWithAssignee:
                     return new ListAllTasksWithAssigneeCommand(commandParameters, repository);
-                //case CommandType.AssignPersonToTask:
-                //    return new AssignPersonToTaskCommand();
-                //case CommandType.UnassignPersonFromTask:
-                //    return new UnassignPersonFromTaskCommand();
-                //case CommandType.ShowAllPeople:
-                //    return new ShowAllPeopleCommand();
-                //case CommandType.ShowAllTeamBoards:
-                //    return new ShowAllTeamBoardsCommand();
-                //case CommandType.ShowAllTeamMembers:
-                //    return new ShowAllTeamMembersCommand();
-                //case CommandType.ShowAllTeams:
-                //    return new ShowAllTeamsCommand();
-                //case CommandType.ShowBoardActivity:
-                //    return new ShowBoardActivityCommand();
-                //case CommandType.ShowPersonActivity:
-                //    return new ShowPersonActivityCommand();
-                //case CommandType.ShowTeamActivity:
-                //    return new ShowTeamActivityCommand();
+                case CommandType.AssignPersonToTask:
+                    return new AssignPersonToTaskCommand(commandParameters, repository);
+                case CommandType.UnassignPersonFromTask:
+                    return new UnassignPersonFromTaskCommand(commandParameters, repository);
+                case CommandType.ShowAllPeople:
+                    return new ShowAllPeopleCommand(repository);
+                case CommandType.ShowAllTeamBoards:
+                    return new ShowAllTeamBoardsCommand(commandParameters, repository);
+                case CommandType.ShowAllTeamMembers:
+                    return new ShowAllTeamMembersCommand(commandParameters, repository);
+                case CommandType.ShowAllTeams:
+                    return new ShowAllTeamsCommand(repository);
+                case CommandType.ShowBoardActivity:
+                    return new ShowBoardActivityCommand(commandParameters, repository);
+                case CommandType.ShowPersonActivity:
+                    return new ShowPersonActivityCommand(commandParameters, repository);
+                case CommandType.ShowTeamActivity:
+                    return new ShowTeamActivityCommand(commandParameters, repository);
+                case CommandType.Help:
+                    return new HelpCommand(repository);
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
             }
