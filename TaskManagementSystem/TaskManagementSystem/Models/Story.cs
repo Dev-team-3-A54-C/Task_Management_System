@@ -110,7 +110,7 @@ namespace TaskManagementSystem.Models
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.Append(base.ToString());
             stringBuilder.AppendLine($"     Size: {Size}");
             stringBuilder.AppendLine($"     Priority: {Priority}");
             stringBuilder.AppendLine($"     Status: {Status}");

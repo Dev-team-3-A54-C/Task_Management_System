@@ -71,7 +71,7 @@ namespace TaskManagementSystem.Models
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.Append(base.ToString());
             stringBuilder.AppendLine($"     Rating: {Rating}");
             stringBuilder.AppendLine($"     Status: {Status}");
 

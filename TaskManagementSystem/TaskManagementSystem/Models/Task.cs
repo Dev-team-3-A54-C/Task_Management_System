@@ -122,7 +122,7 @@ namespace TaskManagementSystem.Models
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine($"--- Bug: {Title} ---");
+            stringBuilder.AppendLine($"--- {taskType}: {Title} ---");
             stringBuilder.AppendLine($"     Id: {Id}");
             stringBuilder.AppendLine($"     Description: {Description}");
 
