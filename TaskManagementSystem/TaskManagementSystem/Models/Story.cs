@@ -114,7 +114,7 @@ namespace TaskManagementSystem.Models
             stringBuilder.AppendLine($"     Size: {Size}");
             stringBuilder.AppendLine($"     Priority: {Priority}");
             stringBuilder.AppendLine($"     Status: {Status}");
-            stringBuilder.AppendLine($"     Assignee: {Assignee}");
+            stringBuilder.AppendLine($"     Assignee: {Assignee ?? Assignee: No Assignee}");
             stringBuilder.AppendLine(ListComments());
             
             return stringBuilder.ToString();
