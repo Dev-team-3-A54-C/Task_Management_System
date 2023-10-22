@@ -1,5 +1,6 @@
-For now if you want your input to have spaces inside it(example:"Bug accurred durring application closing.") you need to surround it with {{param}}.
-!!!This only work if the parameter is in first place in the coomand line.
+For now, if you want your input to have spaces inside it(example:"Bug accurred durring application closing.") you need to surround it with {{param}}.
+!!!This only work if the parameter is in first place in the command line.
+Core/CommandFactory/ExtractCommandParameter member needs to be rewritten for the INPUT WITH CURLY BRACES to work properly. 
 
 INPUT WITH CURLY BRACES:
 
