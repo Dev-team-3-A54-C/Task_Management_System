@@ -61,7 +61,7 @@ namespace TaskManagementSystem.Models
 
         public void SetRating(int rating)
         {
-            ValidationHelpers.ValidationHelper.ValidateIfIntIsNegative(rating, "Rating cannot be null");
+            ValidationHelpers.ValidationHelper.ValidateIfIntIsNegative(rating, "Rating cannot be negative");
 
             int oldRating = Rating;
             Rating = rating;
