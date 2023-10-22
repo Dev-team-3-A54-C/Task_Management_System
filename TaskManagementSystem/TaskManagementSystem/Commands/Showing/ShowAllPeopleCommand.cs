@@ -27,7 +27,7 @@ namespace TaskManagementSystem.Commands.Showing
 
             foreach(var person in this.Repository.Members)
             {
-                output.Append(person.ToString());
+                output.AppendLine(person.ToString());
             }
 
             return output.ToString();

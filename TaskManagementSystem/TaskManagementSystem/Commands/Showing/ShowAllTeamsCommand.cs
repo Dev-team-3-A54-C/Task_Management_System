@@ -29,7 +29,7 @@ namespace TaskManagementSystem.Commands.Showing
 
             foreach (var team in teams)
             {
-                output.Append(team.ToString());
+                output.AppendLine(team.ToString());
             }
 
             return output.ToString();

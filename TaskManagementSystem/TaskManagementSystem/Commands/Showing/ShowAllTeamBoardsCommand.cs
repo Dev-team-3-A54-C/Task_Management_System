@@ -33,7 +33,7 @@ namespace TaskManagementSystem.Commands.Showing
 
             foreach (var board in team.Boards)
             {
-                output.Append(board.ToString());
+                output.AppendLine(board.ToString());
             }
 
             return output.ToString();
