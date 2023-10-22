@@ -1,0 +1,76 @@
+For now if you want your input to have spaces inside it(example:"Bug accurred durring application closing.") you need to surround it with {{param}}.
+!!!This only work if the parameter is in first place in the coomand line.
+
+INPUT WITH CURLY BRACES:
+
+CreateNewTeam Eagles
+CreateNewBoardInTeam Eagles Tasks
+CreateNewPerson Ivan4o
+CreateNewBugInBoard BugInObject {{Cannot create instance}} one,two,three Medium Minor Tasks
+CreateNewFeedbackInBoard FeedbackOnTask2 {{Very good}} 5 Tasks
+CreateNewStoryInBoard StoryTitle {{nice story}} Low Large Tasks
+AddCommentToTask {{Message with spaces}} Ivan4o BugInObject
+AddPersonToTeam Ivan4o Eagles
+ChangePriorityOfBug BugInObject Low
+ChangePriorityOfStory Story High
+ChangeRatingOfFeedback FeedbackOnTask2 2
+ChangeSeverityOfBug BugInObject Major
+ChangeSizeOfStory StoryTitle Small
+ChangeStatusOfBug BugInObject Fixed
+ChangeStatusOfStory StoryTitle Done
+ChangeStatusOfFeedback FeedbackOnTask2 Unscheduled
+AssignPersonToTask Ivan4o StoryTitle
+UnassignPersonFromTask StoryTitle
+
+##################################
+INPUT WITHOUT CURLY BRACES:
+
+CreateNewTeam Eagles
+CreateNewBoardInTeam Eagles Tasks
+CreateNewPerson Ivan4o
+CreateNewBugInBoard BugInObject Cannotcreateinstance one,two,three Medium Minor Tasks
+CreateNewFeedbackInBoard FeedbackOnTask2 Verygoodnine 5 Tasks
+CreateNewStoryInBoard StoryTitle nicestorybro Low Large Tasks
+AddCommentToTask {{Message with spaces}} Ivan4o BugInObject
+AddPersonToTeam Ivan4o Eagles
+ChangePriorityOfBug BugInObject Low
+ChangePriorityOfStory StoryTitle High
+ChangeRatingOfFeedback FeedbackOnTask2 2
+ChangeSeverityOfBug BugInObject Major
+ChangeSizeOfStory StoryTitle Small
+ChangeStatusOfBug BugInObject Fixed
+ChangeStatusOfStory StoryTitle Done
+ChangeStatusOfFeedback FeedbackOnTask2 Unscheduled
+AssignPersonToTask Ivan4o StoryTitle
+UnassignPersonFromTask StoryTitle
+CreateNewTeam Impostors
+CreateNewBoardInTeam Impostors FishyBoard
+CreateNewPerson Damyan
+CreateNewPerson JohnnyDepp
+CreateNewPerson StoqnKolev
+CreateNewStoryInBoard OneBrightSunnyDay NiceDescriptionMate Medium Small FishyBoard
+CreateNewStoryInBoard SecondBrightSunnyDay WowWhatADescription Medium Large FishyBoard
+CreateNewStoryInBoard AAAAAAAA AAAAAAAAAAA Low Small Tasks
+CreateNewBoardInTeam Impostors AKABoard
+CreateNewBugInBoard Error404 CannotRunProgram six,seven,eight Medium Critical Tasks
+CreateNewFeedbackInBoard FeedOnError VeryShitErrorMan 69 Tasks
+AddPersonToTeam Damyan Impostors
+AddPersonToTeam JohnnyDepp Impostors
+AddPersonToTeam StoqnKolev Impostors
+AddCommentToTask {{Task comment yeahh}} JohnnyDepp FeedOnError
+AssignPersonToTask Damyan Error404
+AssignPersonToTask StoqnKolev OneBrightSunnyDay
+AssignPersonToTask StoqnKolev SecondBrightSunnyDay
+ShowAllPeople
+ShowAllTeamBoards Impostors
+ShowAllTeamMembers Impostors
+ShowAllTeams
+ShowBoardActivity FishyBoard
+ShowPersonActivity Damyan
+ShowTeamActivity Impostors
+ListAllBugs
+ListAllFeedbacks
+ListAllStories
+ListAllTasks
+ListAllTasksWithAssignee StoqnKolev
+
